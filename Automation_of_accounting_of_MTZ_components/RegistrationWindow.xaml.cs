@@ -23,7 +23,7 @@ namespace Automation_of_accounting_of_MTZ_components
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        EmployeeContext db;
+        //EmployeeContext db;
         public RegistrationWindow()
         {
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace Automation_of_accounting_of_MTZ_components
                 dataAdapter.Fill(table);
                 if (table.Rows.Count > 0)
                 {
-                    MessageBox.Show("Этот логин занят. Введите другой");
+                    MessageBox.Show("This login is not available, please enter another one.");
                 }
                 else if (table.Rows.Count == 0)
                 {
@@ -76,7 +76,7 @@ namespace Automation_of_accounting_of_MTZ_components
                     myConnectionString.Open();
                     cmd.ExecuteNonQuery();
                     myConnectionString.Close();
-                    MessageBox.Show("Регистрация прошла успешно.");
+                    MessageBox.Show("Registration is successful!");
                 }
             }
         }

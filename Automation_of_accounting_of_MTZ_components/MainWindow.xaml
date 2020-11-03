@@ -32,16 +32,16 @@
 
     <Grid Background="LightGray" MouseLeftButtonDown="Grid_MouseLeftButtonDown" >
         <Grid Height="60" VerticalAlignment="Top" Background="#FFEA4E2C">
-            <TextBlock Text="Minsk Tractor Factory" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+            <TextBlock Text="Minsk Tractor Works" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontFamily="Helvetica" FontWeight="Light"/>
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="Sasha Ritvinsky" VerticalAlignment="Center" FontSize="18"/>
+                <TextBlock x:Name="login" VerticalAlignment="Center" FontSize="20" FontFamily="Helvetica" FontWeight="Light"/>
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
-                        <Button Content="Settings"></Button>
-                        <Button Content="Help"></Button>
-                        <Button x:Name="ChangeAccButton" Content="Change account" Click="ChangeAccButton_Click"></Button>
+                        <Button Content="Settings" FontFamily="Helvetica" FontWeight="Light" FontSize="16"></Button>
+                        <Button Content="Help" FontFamily="Helvetica" FontWeight="Light" FontSize="16"></Button>
+                        <Button x:Name="ChangeAccButton" Content="Change account" Click="ChangeAccButton_Click" FontFamily="Helvetica" FontWeight="Light" FontSize="16"></Button>
                         <Separator/>
-                        <Button x:Name="ButtonPopUpLogout" Content="Logout" Click="ButtonPopUpLogout_Click"/>
+                        <Button x:Name="ButtonPopUpLogout" Content="Logout" Click="ButtonPopUpLogout_Click" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
@@ -60,31 +60,31 @@
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Pencil" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Create" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Create" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Ticket" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Tickets" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Tickets" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Message" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Messages" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Messages" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Github" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="GitHub" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="GitHub" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>

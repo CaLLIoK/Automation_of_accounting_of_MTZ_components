@@ -35,6 +35,7 @@ namespace Automation_of_accounting_of_MTZ_components
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            mainWindow.login.Text = userLogin.Text;
             this.Close();
         }
 

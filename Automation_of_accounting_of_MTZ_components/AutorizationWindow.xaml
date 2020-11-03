@@ -24,12 +24,12 @@
                 <StackPanel Orientation="Horizontal">
                     <!--<TextBox FontFamily="Helvetica" FontWeight="Light" Text="UserName" FontSize="20" HorizontalAlignment="Center" Foreground="Black" Background="Transparent" BorderThickness="0" Width="235" HorizontalContentAlignment="Left" Opacity="0.5" Height="30" Margin="63,0,0,0"/>-->
                     <iconPacks:PackIconMaterial Kind="Account" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Margin="55,-10,10,0"/>
-                    <TextBox materialDesign:HintAssist.Hint="UserName" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10 -30 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox x:Name="userLogin" materialDesign:HintAssist.Hint="UserName" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10 -30 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 </StackPanel>
                 <!--<Border Width="250" Height="2" Background="Black" Opacity="0.5"/>-->
                 <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
                     <iconPacks:PackIconMaterial Kind="FormTextboxPassword" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Margin="55,-10,10,0"/>
-                    <PasswordBox materialDesign:HintAssist.Hint="Password" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10 -30 0 0" Foreground="Black" Background="Transparent" Width="235" Height="50" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                    <PasswordBox x:Name="userPassword" materialDesign:HintAssist.Hint="Password" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10 -30 0 0" Foreground="Black" Background="Transparent" Width="235" Height="50" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
                     <!--<PasswordBox FontFamily="Helvetica" FontWeight="Light" Password="Password" FontSize="20" HorizontalAlignment="Center" Foreground="Black" Background="Transparent" BorderThickness="0" Width="235" HorizontalContentAlignment="Left" Opacity="0.5" Height="30" Margin="63,0,0,0"/>-->
                 </StackPanel>
                 <!--<Border Width="250" Height="2" Background="Black" Opacity="0.5"/>-->
