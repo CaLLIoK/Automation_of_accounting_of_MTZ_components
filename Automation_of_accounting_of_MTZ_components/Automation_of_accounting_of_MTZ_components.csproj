@@ -96,7 +96,7 @@
     <Compile Include="AutorizationWindow.xaml.cs">
       <DependentUpon>AutorizationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data_validation\CheckEmployeeData.cs" />
+    <Compile Include="Data_validation\EmployeeChecks.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeContext.cs" />
     <Compile Include="RegistrationWindow.xaml.cs">

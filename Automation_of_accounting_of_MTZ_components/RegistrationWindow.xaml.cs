@@ -1,4 +1,5 @@
-﻿using Automation_of_accounting_of_MTZ_components.EmployeeFolder;
+﻿using Automation_of_accounting_of_MTZ_components.Data_validation;
+using Automation_of_accounting_of_MTZ_components.EmployeeFolder;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,6 +32,42 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
+            if (nameField.Text != EmployeeChecks.CheckEmployeeData(nameField.Text, "Name not entered.", "Name contains invalid symbols.", "Allowed name length is 2-30 symbols."))
+            {
+                MessageBox.Show(EmployeeChecks.CheckEmployeeData(nameField.Text, "Name not entered.", "Name contains invalid symbols.", "Allowed name length is 2-30 symbols."));
+                return;
+            }
+
+            if (surnameField.Text != EmployeeChecks.CheckEmployeeData(surnameField.Text, "Surname not entered.", "Surname contains invalid symbols.", "Allowed surname length is 2-30 symbols."))
+            {
+                MessageBox.Show(EmployeeChecks.CheckEmployeeData(surnameField.Text, "Surname not entered.", "Surname contains invalid symbols.", "Allowed surname length is 2-30 symbols."));
+                return;
+            }
+
+            if (patronymicField.Text != EmployeeChecks.CheckEmployeeData(patronymicField.Text, "Patronymic not entered.", "Patronymic contains invalid symbols.", "Allowed patronymic length is 2-30 symbols."))
+            {
+                MessageBox.Show(EmployeeChecks.CheckEmployeeData(patronymicField.Text, "Patronymic not entered.", "Patronymic contains invalid symbols.", "Allowed patronymic length is 2-30 symbols."));
+                return;
+            }
+
+            if (loginField.Text != EmployeeChecks.CheckEmployeeLogin(loginField.Text))
+            {
+                MessageBox.Show(EmployeeChecks.CheckEmployeeLogin(loginField.Text));
+                return;
+            }
+
+            if (passwordField.Password.ToString() != EmployeeChecks.CheckEmployeePassword(passwordField.Password.ToString()))
+            {
+                MessageBox.Show(EmployeeChecks.CheckEmployeePassword(passwordField.Password.ToString()));
+                return;
+            }
+
+            if (postField.Text == string.Empty)
+            {
+                MessageBox.Show("Post not selected.");
+                return;
+            }
+
             int postCode = 0;
             SqlConnection myConnectionString = new SqlConnection(@"Data Source=(local)\SQLEXPRESS; Initial Catalog=Automation_of_accounting_of_MTZ_components; Integrated Security=True");
             string selectPostCodeQuery = "SELECT postCode FROM Post WHERE [postName] = '" + postField.Text + "'";
