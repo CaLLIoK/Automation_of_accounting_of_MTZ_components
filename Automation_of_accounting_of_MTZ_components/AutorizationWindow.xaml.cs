@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -33,10 +35,28 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            mainWindow.login.Text = userLogin.Text;
-            this.Close();
+            string login = userLogin.Text;
+            string password = userPassword.Password.ToString();
+
+            SqlConnection myConnectionString = new SqlConnection(@"Data Source=(local)\SQLEXPRESS; Initial Catalog=Automation_of_accounting_of_MTZ_components; Integrated Security=True");
+            string selectEmployeeInfoQuery = "SELECT * FROM Employee WHERE [employeeLogin] = '" + login + "'and [employeePassword]='" + password + "'";
+            using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectEmployeeInfoQuery, myConnectionString))
+            {
+                DataTable table = new DataTable();
+                dataAdapter.Fill(table);
+                if (table.Rows.Count > 0)
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    mainWindow.login.Text = userLogin.Text;
+                    this.Close();
+                }
+                else if (table.Rows.Count == 0)
+                {
+                    MessageBox.Show("Wrong login or password.");
+                    return;
+                }
+            }
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
