@@ -37,7 +37,7 @@
                 <TextBlock x:Name="login" VerticalAlignment="Center" FontSize="20" FontFamily="Helvetica" FontWeight="Light"/>
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
-                        <Button Content="Settings" FontFamily="Helvetica" FontWeight="Light" FontSize="16"></Button>
+                        <Button Content="Settings" FontFamily="Helvetica" FontWeight="Light" FontSize="16" Click="SettingsButton_Click"></Button>
                         <Button Content="Help" FontFamily="Helvetica" FontWeight="Light" FontSize="16"></Button>
                         <Button x:Name="ChangeAccButton" Content="Change account" Click="ChangeAccButton_Click" FontFamily="Helvetica" FontWeight="Light" FontSize="16"></Button>
                         <Separator/>
@@ -89,9 +89,6 @@
                     </ListViewItem>
                 </ListView>
             </StackPanel>
-        </Grid>
-        <Grid x:Name="WorkPlace" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="1020" Height="540">
-            
         </Grid>
     </Grid>
 </Window>

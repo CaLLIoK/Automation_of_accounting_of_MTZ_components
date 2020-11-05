@@ -89,14 +89,15 @@ namespace Automation_of_accounting_of_MTZ_components
             //db.Employee.AddRange(employees);
             //db.SaveChanges();
 
-            string selectEmployeeLogin = "SELECT * FROM Employee WHERE [EmployeeLogin] = '" + loginField.Text + "'";
-            using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectEmployeeLogin, myConnectionString))
+            string selectEmployeeLoginQuery = "SELECT * FROM Employee WHERE [employeeLogin] = '" + loginField.Text + "'";
+            using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectEmployeeLoginQuery, myConnectionString))
             {
                 DataTable table = new DataTable();
                 dataAdapter.Fill(table);
                 if (table.Rows.Count > 0)
                 {
                     MessageBox.Show("This login is not available, please enter another one.");
+                    return;
                 }
                 else if (table.Rows.Count == 0)
                 {

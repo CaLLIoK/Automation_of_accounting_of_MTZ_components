@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,14 @@ namespace Automation_of_accounting_of_MTZ_components
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+            StreamReader file = new StreamReader("UserLogin.txt");
+            string employeeLogin = file.ReadLine();
+            file.Close();
+            login.Text = employeeLogin;
         }
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
@@ -52,6 +59,12 @@ namespace Automation_of_accounting_of_MTZ_components
             AutorizationWindow autorizationWindow = new AutorizationWindow();
             autorizationWindow.Show();
             this.Close();
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AccountSettings accountSettings = new AccountSettings();
+            accountSettings.ShowDialog();
         }
     }
 }

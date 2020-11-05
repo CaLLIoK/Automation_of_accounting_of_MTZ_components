@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -46,9 +47,11 @@ namespace Automation_of_accounting_of_MTZ_components
                 dataAdapter.Fill(table);
                 if (table.Rows.Count > 0)
                 {
+                    StreamWriter loginFile = new StreamWriter("UserLogin.txt");
+                    loginFile.Write(login);
+                    loginFile.Close();
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
-                    mainWindow.login.Text = userLogin.Text;
                     this.Close();
                 }
                 else if (table.Rows.Count == 0)

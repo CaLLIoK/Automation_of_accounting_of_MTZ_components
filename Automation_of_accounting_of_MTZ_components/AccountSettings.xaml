@@ -45,8 +45,8 @@
         </Grid>
         <Grid Width="639" Height="300" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="SingInButton" Width="180" Height="40" Click="SingInButton_Click" VerticalAlignment="Center" ToolTip="MaterialDesignFlatButton" Margin="60 195 150 0">BACK</Button>
-                <Button x:Name="SaveButton" Width="180" Height="40" VerticalAlignment="Center" Content="SAVE CHANGES" Click="SaveButton_Click" Margin="0 205 0 10"></Button>
+                <!--<Button x:Name="SingInButton" Width="180" Height="40" Click="SingInButton_Click" VerticalAlignment="Center" ToolTip="MaterialDesignFlatButton" Margin="60 195 150 0">BACK</Button>-->
+                <Button x:Name="SaveButton" Width="180" Height="40" VerticalAlignment="Center" Content="SAVE CHANGES" Click="SaveButton_Click" Margin="225 205 0 10"></Button>
             </StackPanel>
         </Grid>
     </Grid>
