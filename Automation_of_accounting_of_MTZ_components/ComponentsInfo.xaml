@@ -7,7 +7,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ComponentsInfoWindow" Width="1350" Height="540" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="ComponentsInfoWindow" Width="1500" Height="540" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Window.Resources>
         <Style x:Key="ElementStyle" TargetType="TextBlock">
@@ -18,6 +18,21 @@
     <Grid>
         <Label Content="Components information" FontSize="30" FontWeight="Bold" FontFamily="Helvetica" Margin="20"/>
         <Button x:Name="CloseButton" Style="{StaticResource MaterialDesignFlatButton}" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" ToolTip="MaterialDesignFlatButton">Close</Button>
+        <Grid Width="300" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 80 0 0">
+            <StackPanel Orientation="Horizontal" Margin="10 80 0 0">
+                <iconPacks:PackIconMaterial Kind="Check" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
+                <TextBox x:Name="tractorNameField" materialDesign:HintAssist.Hint="Tractor name" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -10 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10 140 0 0">
+                <iconPacks:PackIconMaterial Kind="Check" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
+                <TextBox x:Name="componentNameField" materialDesign:HintAssist.Hint="Component name" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -10 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10 200 0 0">
+                <iconPacks:PackIconMaterial Kind="Check" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
+                <TextBox x:Name="availabilityStatusNameField" materialDesign:HintAssist.Hint="Availability status" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -10 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+            <Button x:Name="SearchButton" Width="180" Height="40" VerticalAlignment="Center" Content="SEARCH" Margin="0 280 0 0"/>
+        </Grid>
         <DataGrid x:Name="ComponentsGrid" Width="1150" Height="400" HorizontalAlignment="Right" Margin="0 20 20 0" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding tractorBrandName}" Header="Tractor name" Width="155" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
