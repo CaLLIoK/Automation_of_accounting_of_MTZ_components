@@ -99,6 +99,9 @@
     <Compile Include="AutorizationWindow.xaml.cs">
       <DependentUpon>AutorizationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ComponentsInfo.xaml.cs">
+      <DependentUpon>ComponentsInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data_validation\EmployeeChecks.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeContext.cs" />
@@ -114,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComponentsInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

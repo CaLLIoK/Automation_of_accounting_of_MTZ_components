@@ -29,11 +29,6 @@ namespace Automation_of_accounting_of_MTZ_components
             InitializeComponent();
         }
 
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string login = userLogin.Text;
@@ -72,6 +67,11 @@ namespace Automation_of_accounting_of_MTZ_components
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

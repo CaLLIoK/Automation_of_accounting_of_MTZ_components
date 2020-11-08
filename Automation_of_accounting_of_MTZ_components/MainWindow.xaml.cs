@@ -46,7 +46,7 @@ namespace Automation_of_accounting_of_MTZ_components
                 {
                     for (int i = 0; i < table.Rows.Count; i++)
                     {
-                        components += table.Rows[i]["tractorBrandName"].ToString() + "\t - \t" + table.Rows[i]["componentCount"].ToString() + "\n";
+                        components += table.Rows[i]["componentName"].ToString() + " (" + table.Rows[i]["tractorBrandName"].ToString() + ") " + "\t - \t" + table.Rows[i]["componentCount"].ToString() + "\n";
                     }                 
                 }
             }
@@ -88,6 +88,14 @@ namespace Automation_of_accounting_of_MTZ_components
             accountSettings.Owner = this;
             accountSettings.Topmost = true;
             accountSettings.ShowDialog();
+        }
+
+        private void ComponentsInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ComponentsInfo componentsInfo = new ComponentsInfo();
+            componentsInfo.Owner = this;
+            componentsInfo.Topmost = true;
+            componentsInfo.ShowDialog();
         }
     }
 }
