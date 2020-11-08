@@ -1,6 +1,8 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,6 +32,25 @@ namespace Automation_of_accounting_of_MTZ_components
             string employeeLogin = file.ReadLine();
             file.Close();
             login.Text = employeeLogin;
+
+            SqlConnection myConnectionString = new SqlConnection(@"Data Source=(local)\SQLEXPRESS; Initial Catalog=Automation_of_accounting_of_MTZ_components; Integrated Security=True");
+
+            string components = string.Empty;
+
+            string selectComponentsQuery = "SELECT * FROM Component JOIN TractorBrand ON Component.tractorBrandCode = TractorBrand.tractorBrandCode WHERE [componentCount] < 100";
+            using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectComponentsQuery, myConnectionString))
+            {
+                DataTable table = new DataTable();
+                dataAdapter.Fill(table);
+                if (table.Rows.Count > 0)
+                {
+                    for (int i = 0; i < table.Rows.Count; i++)
+                    {
+                        components += table.Rows[i]["tractorBrandName"].ToString() + "\t - \t" + table.Rows[i]["componentCount"].ToString() + "\n";
+                    }                 
+                }
+            }
+            MessageBox.Show(components);
         }
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
@@ -64,6 +85,8 @@ namespace Automation_of_accounting_of_MTZ_components
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             AccountSettings accountSettings = new AccountSettings();
+            accountSettings.Owner = this;
+            accountSettings.Topmost = true;
             accountSettings.ShowDialog();
         }
     }
