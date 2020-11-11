@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Automation_of_accounting_of_MTZ_components">
 
-    <Style TargetType="{x:Type Button}">
+    <!--<Style TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -14,15 +14,15 @@
                        FontWeight="Bold" FontSize="20" Content="{TemplateBinding Button.Content}" />
                     </Grid>
 
-                    <!--<ControlTemplate.Triggers>
+                    --><!--<ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="buttonSurface" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
                             <Setter TargetName="buttonCaption" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}" />
                         </Trigger>
-                    </ControlTemplate.Triggers>-->
+                    </ControlTemplate.Triggers>--><!--
 
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 </ResourceDictionary>

@@ -63,7 +63,7 @@
                             <TextBlock Text="Components info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="AddComponents" Height="60" MouseDoubleClick="AddComponents_MouseDoubleClick" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="PencilAdd" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Add components" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
@@ -81,19 +81,19 @@
                             <TextBlock Text="Create report" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="employeesInfo" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountBoxMultipleOutline" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Employees info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="addEmployees" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountAdd" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Add employee" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="deleteEmployees" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountRemove" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Remove employee" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>

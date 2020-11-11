@@ -1174,6 +1174,8 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             private global::System.Data.DataColumn columnavailabilityStatusCode;
             
+            private global::System.Data.DataColumn columncomponentName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ComponentDataTable() {
@@ -1265,6 +1267,14 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn componentNameColumn {
+                get {
+                    return this.columncomponentName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1300,7 +1310,7 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ComponentRow AddComponentRow(double componentWeight, int componentCount, decimal componentCost, string componentDescription, TractorBrandRow parentTractorBrandRowBytractorBrandCode_FK, AvailabilityStatusRow parentAvailabilityStatusRowByavailabilityStatusCode_FK) {
+            public ComponentRow AddComponentRow(double componentWeight, int componentCount, decimal componentCost, string componentDescription, TractorBrandRow parentTractorBrandRowBytractorBrandCode_FK, AvailabilityStatusRow parentAvailabilityStatusRowByavailabilityStatusCode_FK, string componentName) {
                 ComponentRow rowComponentRow = ((ComponentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1309,7 +1319,8 @@ namespace Automation_of_accounting_of_MTZ_components {
                         componentCost,
                         componentDescription,
                         null,
-                        null};
+                        null,
+                        componentName};
                 if ((parentTractorBrandRowBytractorBrandCode_FK != null)) {
                     columnValuesArray[5] = parentTractorBrandRowBytractorBrandCode_FK[0];
                 }
@@ -1352,6 +1363,7 @@ namespace Automation_of_accounting_of_MTZ_components {
                 this.columncomponentDescription = base.Columns["componentDescription"];
                 this.columntractorBrandCode = base.Columns["tractorBrandCode"];
                 this.columnavailabilityStatusCode = base.Columns["availabilityStatusCode"];
+                this.columncomponentName = base.Columns["componentName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1371,6 +1383,8 @@ namespace Automation_of_accounting_of_MTZ_components {
                 base.Columns.Add(this.columntractorBrandCode);
                 this.columnavailabilityStatusCode = new global::System.Data.DataColumn("availabilityStatusCode", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnavailabilityStatusCode);
+                this.columncomponentName = new global::System.Data.DataColumn("componentName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncomponentName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columncomponentCode}, true));
                 this.columncomponentCode.AutoIncrement = true;
@@ -1386,6 +1400,8 @@ namespace Automation_of_accounting_of_MTZ_components {
                 this.columncomponentDescription.MaxLength = 200;
                 this.columntractorBrandCode.AllowDBNull = false;
                 this.columnavailabilityStatusCode.AllowDBNull = false;
+                this.columncomponentName.AllowDBNull = false;
+                this.columncomponentName.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3296,6 +3312,17 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string componentName {
+                get {
+                    return ((string)(this[this.tableComponent.componentNameColumn]));
+                }
+                set {
+                    this[this.tableComponent.componentNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AvailabilityStatusRow AvailabilityStatusRow {
                 get {
                     return ((AvailabilityStatusRow)(this.GetParentRow(this.Table.ParentRelations["availabilityStatusCode_FK"])));
@@ -4771,22 +4798,25 @@ SELECT availabilityStatusCode, availabilityStatusName FROM AvailabilityStatus WH
             tableMapping.ColumnMappings.Add("componentDescription", "componentDescription");
             tableMapping.ColumnMappings.Add("tractorBrandCode", "tractorBrandCode");
             tableMapping.ColumnMappings.Add("availabilityStatusCode", "availabilityStatusCode");
+            tableMapping.ColumnMappings.Add("componentName", "componentName");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Component] WHERE (([componentCode] = @Original_componentCode) AND ([componentWeight] = @Original_componentWeight) AND ([componentCount] = @Original_componentCount) AND ([componentCost] = @Original_componentCost) AND ([componentDescription] = @Original_componentDescription) AND ([tractorBrandCode] = @Original_tractorBrandCode) AND ([availabilityStatusCode] = @Original_availabilityStatusCode))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Component] WHERE (([componentCode] = @Original_componentCode) AND ([componentWeight] = @Original_componentWeight) AND ([componentCount] = @Original_componentCount) AND ([componentCost] = @Original_componentCost) AND ((@IsNull_componentDescription = 1 AND [componentDescription] IS NULL) OR ([componentDescription] = @Original_componentDescription)) AND ([tractorBrandCode] = @Original_tractorBrandCode) AND ([availabilityStatusCode] = @Original_availabilityStatusCode) AND ([componentName] = @Original_componentName))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentWeight", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_componentDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tractorBrandCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tractorBrandCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_availabilityStatusCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "availabilityStatusCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Component] ([componentWeight], [componentCount], [componentCost], [componentDescription], [tractorBrandCode], [availabilityStatusCode]) VALUES (@componentWeight, @componentCount, @componentCost, @componentDescription, @tractorBrandCode, @availabilityStatusCode);
-SELECT componentCode, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode FROM Component WHERE (componentCode = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Component] ([componentWeight], [componentCount], [componentCost], [componentDescription], [tractorBrandCode], [availabilityStatusCode], [componentName]) VALUES (@componentWeight, @componentCount, @componentCost, @componentDescription, @tractorBrandCode, @availabilityStatusCode, @componentName);
+SELECT componentCode, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode, componentName FROM Component WHERE (componentCode = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentWeight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4794,10 +4824,11 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tractorBrandCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tractorBrandCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@availabilityStatusCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "availabilityStatusCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Component] SET [componentWeight] = @componentWeight, [componentCount] = @componentCount, [componentCost] = @componentCost, [componentDescription] = @componentDescription, [tractorBrandCode] = @tractorBrandCode, [availabilityStatusCode] = @availabilityStatusCode WHERE (([componentCode] = @Original_componentCode) AND ([componentWeight] = @Original_componentWeight) AND ([componentCount] = @Original_componentCount) AND ([componentCost] = @Original_componentCost) AND ([componentDescription] = @Original_componentDescription) AND ([tractorBrandCode] = @Original_tractorBrandCode) AND ([availabilityStatusCode] = @Original_availabilityStatusCode));
-SELECT componentCode, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode FROM Component WHERE (componentCode = @componentCode)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Component] SET [componentWeight] = @componentWeight, [componentCount] = @componentCount, [componentCost] = @componentCost, [componentDescription] = @componentDescription, [tractorBrandCode] = @tractorBrandCode, [availabilityStatusCode] = @availabilityStatusCode, [componentName] = @componentName WHERE (([componentCode] = @Original_componentCode) AND ([componentWeight] = @Original_componentWeight) AND ([componentCount] = @Original_componentCount) AND ([componentCost] = @Original_componentCost) AND ((@IsNull_componentDescription = 1 AND [componentDescription] IS NULL) OR ([componentDescription] = @Original_componentDescription)) AND ([tractorBrandCode] = @Original_tractorBrandCode) AND ([availabilityStatusCode] = @Original_availabilityStatusCode) AND ([componentName] = @Original_componentName));
+SELECT componentCode, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode, componentName FROM Component WHERE (componentCode = @componentCode)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentWeight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4805,13 +4836,16 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tractorBrandCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tractorBrandCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@availabilityStatusCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "availabilityStatusCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentWeight", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_componentDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tractorBrandCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tractorBrandCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_availabilityStatusCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "availabilityStatusCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCode", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "componentCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -4829,7 +4863,8 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT componentCode, componentWeight, componentCount, componentCost, componentDe" +
-                "scription, tractorBrandCode, availabilityStatusCode FROM dbo.Component";
+                "scription, tractorBrandCode, availabilityStatusCode, componentName FROM Componen" +
+                "t";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4890,19 +4925,27 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_componentCode, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode) {
+        public virtual int Delete(int Original_componentCode, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode, string Original_componentName) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_componentCode));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((double)(Original_componentWeight));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_componentCount));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_componentCost));
             if ((Original_componentDescription == null)) {
-                throw new global::System.ArgumentNullException("Original_componentDescription");
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_componentDescription));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_componentDescription));
             }
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_tractorBrandCode));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_availabilityStatusCode));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_tractorBrandCode));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_availabilityStatusCode));
+            if ((Original_componentName == null)) {
+                throw new global::System.ArgumentNullException("Original_componentName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_componentName));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4923,18 +4966,24 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode) {
+        public virtual int Insert(double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode, string componentName) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((double)(componentWeight));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(componentCount));
             this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(componentCost));
             if ((componentDescription == null)) {
-                throw new global::System.ArgumentNullException("componentDescription");
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(componentDescription));
             }
             this.Adapter.InsertCommand.Parameters[4].Value = ((int)(tractorBrandCode));
             this.Adapter.InsertCommand.Parameters[5].Value = ((int)(availabilityStatusCode));
+            if ((componentName == null)) {
+                throw new global::System.ArgumentNullException("componentName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(componentName));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4955,31 +5004,61 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode, int Original_componentCode, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode, int componentCode) {
+        public virtual int Update(
+                    double componentWeight, 
+                    int componentCount, 
+                    decimal componentCost, 
+                    string componentDescription, 
+                    int tractorBrandCode, 
+                    int availabilityStatusCode, 
+                    string componentName, 
+                    int Original_componentCode, 
+                    double Original_componentWeight, 
+                    int Original_componentCount, 
+                    decimal Original_componentCost, 
+                    string Original_componentDescription, 
+                    int Original_tractorBrandCode, 
+                    int Original_availabilityStatusCode, 
+                    string Original_componentName, 
+                    int componentCode) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((double)(componentWeight));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(componentCount));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(componentCost));
             if ((componentDescription == null)) {
-                throw new global::System.ArgumentNullException("componentDescription");
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(componentDescription));
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(tractorBrandCode));
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(availabilityStatusCode));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_componentCode));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((double)(Original_componentWeight));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_componentCount));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(Original_componentCost));
-            if ((Original_componentDescription == null)) {
-                throw new global::System.ArgumentNullException("Original_componentDescription");
+            if ((componentName == null)) {
+                throw new global::System.ArgumentNullException("componentName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_componentDescription));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(componentName));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_tractorBrandCode));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_availabilityStatusCode));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(componentCode));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_componentCode));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((double)(Original_componentWeight));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_componentCount));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_componentCost));
+            if ((Original_componentDescription == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_componentDescription));
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_tractorBrandCode));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_availabilityStatusCode));
+            if ((Original_componentName == null)) {
+                throw new global::System.ArgumentNullException("Original_componentName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_componentName));
+            }
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(componentCode));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5000,8 +5079,8 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode, int Original_componentCode, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode) {
-            return this.Update(componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode, Original_componentCode, Original_componentWeight, Original_componentCount, Original_componentCost, Original_componentDescription, Original_tractorBrandCode, Original_availabilityStatusCode, Original_componentCode);
+        public virtual int Update(double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode, string componentName, int Original_componentCode, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode, string Original_componentName) {
+            return this.Update(componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode, componentName, Original_componentCode, Original_componentWeight, Original_componentCount, Original_componentCost, Original_componentDescription, Original_tractorBrandCode, Original_availabilityStatusCode, Original_componentName, Original_componentCode);
         }
     }
     

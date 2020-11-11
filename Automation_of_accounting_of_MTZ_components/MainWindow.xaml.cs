@@ -24,19 +24,45 @@ namespace Automation_of_accounting_of_MTZ_components
     /// </summary>
     public partial class MainWindow : Window
     {
+        SqlConnection myConnectionString = new SqlConnection(@"Data Source=(local)\SQLEXPRESS; Initial Catalog=Automation_of_accounting_of_MTZ_components; Integrated Security=True");
 
         public MainWindow()
         {
             InitializeComponent();
+
+            employeesInfo.Width = 0;
+            addEmployees.Width = 0;
+            deleteEmployees.Width = 0;
+
             StreamReader file = new StreamReader("UserLogin.txt");
             string employeeLogin = file.ReadLine();
             file.Close();
             login.Text = employeeLogin;
 
-            SqlConnection myConnectionString = new SqlConnection(@"Data Source=(local)\SQLEXPRESS; Initial Catalog=Automation_of_accounting_of_MTZ_components; Integrated Security=True");
+            string components = string.Empty;           
+            MessageBox.Show(SelectComponents(components));
 
-            string components = string.Empty;
+            string post = string.Empty;
+            string selectEmployeePostQuery = "SELECT postName FROM Employee JOIN Post ON Employee.postCode = Post.postCode WHERE employeeLogin = '" + login.Text + "'";
+            using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectEmployeePostQuery, myConnectionString))
+            {
+                DataTable table = new DataTable();
+                dataAdapter.Fill(table);
+                if (table.Rows.Count > 0)
+                {               
+                    post = table.Rows[0]["postName"].ToString();
+                }
+            }
+            if (post == "Администратор")
+            {
+                employeesInfo.Width = 250;
+                addEmployees.Width = 250;
+                deleteEmployees.Width = 250;
+            }
+        }
 
+        private string SelectComponents(string component)
+        {
             string selectComponentsQuery = "SELECT * FROM Component JOIN TractorBrand ON Component.tractorBrandCode = TractorBrand.tractorBrandCode WHERE [componentCount] < 100";
             using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectComponentsQuery, myConnectionString))
             {
@@ -46,11 +72,11 @@ namespace Automation_of_accounting_of_MTZ_components
                 {
                     for (int i = 0; i < table.Rows.Count; i++)
                     {
-                        components += table.Rows[i]["componentName"].ToString() + " (" + table.Rows[i]["tractorBrandName"].ToString() + ") " + "\t - \t" + table.Rows[i]["componentCount"].ToString() + "\n";
-                    }                 
+                        component += table.Rows[i]["componentName"].ToString() + " (" + table.Rows[i]["tractorBrandName"].ToString() + ") " + "\t - \t" + table.Rows[i]["componentCount"].ToString() + "\n";
+                    }
                 }
             }
-            MessageBox.Show(components);
+            return component;
         }
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
@@ -96,6 +122,14 @@ namespace Automation_of_accounting_of_MTZ_components
             componentsInfo.Owner = this;
             componentsInfo.Topmost = true;
             componentsInfo.ShowDialog();
+        }
+
+        private void AddComponents_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AddComponents addComponents = new AddComponents();
+            addComponents.Owner = this;
+            addComponents.Topmost = true;
+            addComponents.ShowDialog();
         }
     }
 }
