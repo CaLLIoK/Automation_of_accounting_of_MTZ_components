@@ -24,7 +24,8 @@ namespace Automation_of_accounting_of_MTZ_components
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        //EmployeeContext db;
+        internal string successfulRegistration = "Registration is successful!";
+
         public RegistrationWindow()
         {
             InitializeComponent();
@@ -114,7 +115,7 @@ namespace Automation_of_accounting_of_MTZ_components
                     myConnectionString.Open();
                     cmd.ExecuteNonQuery();
                     myConnectionString.Close();
-                    MessageBox.Show("Registration is successful!");
+                    MessageBox.Show(successfulRegistration);
                 }
             }
         }
@@ -128,7 +129,7 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

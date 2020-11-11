@@ -30,9 +30,9 @@ namespace Automation_of_accounting_of_MTZ_components
         {
             InitializeComponent();
 
-            employeesInfo.Width = 0;
-            addEmployees.Width = 0;
-            deleteEmployees.Width = 0;
+            EmployeesInfo.Visibility = Visibility.Hidden;
+            AddEmployees.Visibility = Visibility.Hidden;
+            DeleteEmployees.Visibility = Visibility.Hidden;
 
             StreamReader file = new StreamReader("UserLogin.txt");
             string employeeLogin = file.ReadLine();
@@ -55,9 +55,9 @@ namespace Automation_of_accounting_of_MTZ_components
             }
             if (post == "Администратор")
             {
-                employeesInfo.Width = 250;
-                addEmployees.Width = 250;
-                deleteEmployees.Width = 250;
+                EmployeesInfo.Visibility = Visibility.Visible;
+                AddEmployees.Visibility = Visibility.Visible;
+                DeleteEmployees.Visibility = Visibility.Visible;
             }
         }
 
@@ -130,6 +130,20 @@ namespace Automation_of_accounting_of_MTZ_components
             addComponents.Owner = this;
             addComponents.Topmost = true;
             addComponents.ShowDialog();
+        }
+
+        private void AddEmployees_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Title.Content = "Add employees";
+            registrationWindow.Description.Content = "Fill the fields below to adding employee";
+            registrationWindow.RegisterButton.Content = "ADD EMPLOYEE";
+            registrationWindow.Account.Visibility = Visibility.Hidden;
+            registrationWindow.SingInButton.Visibility = Visibility.Hidden;
+            registrationWindow.successfulRegistration = "Adding employee is successful!";
+            registrationWindow.Owner = this;
+            registrationWindow.Topmost = true;
+            registrationWindow.ShowDialog();
         }
     }
 }
