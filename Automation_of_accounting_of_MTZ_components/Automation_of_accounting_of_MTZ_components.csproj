@@ -106,8 +106,22 @@
     <Compile Include="AddComponents.xaml.cs">
       <DependentUpon>AddComponents.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddToConsignmentNoteWindow.xaml.cs">
+      <DependentUpon>AddToConsignmentNoteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Automation_of_accounting_of_MTZ_componentsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Automation_of_accounting_of_MTZ_componentsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AutorizationWindow.xaml.cs">
       <DependentUpon>AutorizationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeComponentsInfoWindow.xaml.cs">
+      <DependentUpon>ChangeComponentsInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeEmployeesInfoWindow.xaml.cs">
+      <DependentUpon>ChangeEmployeesInfoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComponentsInfo.xaml.cs">
       <DependentUpon>ComponentsInfo.xaml</DependentUpon>
@@ -127,11 +141,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddToConsignmentNoteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AutorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeComponentsInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeEmployeesInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,11 +172,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Automation_of_accounting_of_MTZ_componentsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Automation_of_accounting_of_MTZ_componentsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

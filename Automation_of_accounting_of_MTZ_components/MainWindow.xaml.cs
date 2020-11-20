@@ -30,17 +30,13 @@ namespace Automation_of_accounting_of_MTZ_components
         {
             InitializeComponent();
 
-            EmployeesInfo.Visibility = Visibility.Hidden;
             AddEmployees.Visibility = Visibility.Hidden;
-            DeleteEmployees.Visibility = Visibility.Hidden;
+            ChangeEmployeesInfo.Visibility = Visibility.Hidden;
 
             StreamReader file = new StreamReader("UserLogin.txt");
             string employeeLogin = file.ReadLine();
             file.Close();
             login.Text = employeeLogin;
-
-            string components = string.Empty;           
-            MessageBox.Show(SelectComponents(components));
 
             string post = string.Empty;
             string selectEmployeePostQuery = "SELECT postName FROM Employee JOIN Post ON Employee.postCode = Post.postCode WHERE employeeLogin = '" + login.Text + "'";
@@ -55,28 +51,9 @@ namespace Automation_of_accounting_of_MTZ_components
             }
             if (post == "Администратор")
             {
-                EmployeesInfo.Visibility = Visibility.Visible;
                 AddEmployees.Visibility = Visibility.Visible;
-                DeleteEmployees.Visibility = Visibility.Visible;
+                ChangeEmployeesInfo.Visibility = Visibility.Visible;
             }
-        }
-
-        private string SelectComponents(string component)
-        {
-            string selectComponentsQuery = "SELECT * FROM Component JOIN TractorBrand ON Component.tractorBrandCode = TractorBrand.tractorBrandCode WHERE [componentCount] < 100";
-            using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectComponentsQuery, myConnectionString))
-            {
-                DataTable table = new DataTable();
-                dataAdapter.Fill(table);
-                if (table.Rows.Count > 0)
-                {
-                    for (int i = 0; i < table.Rows.Count; i++)
-                    {
-                        component += table.Rows[i]["componentName"].ToString() + " (" + table.Rows[i]["tractorBrandName"].ToString() + ") " + "\t - \t" + table.Rows[i]["componentCount"].ToString() + "\n";
-                    }
-                }
-            }
-            return component;
         }
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
@@ -144,6 +121,30 @@ namespace Automation_of_accounting_of_MTZ_components
             registrationWindow.Owner = this;
             registrationWindow.Topmost = true;
             registrationWindow.ShowDialog();
+        }
+
+        private void ChangeComponentsInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ChangeComponentsInfoWindow changeComponentsInfoWindow = new ChangeComponentsInfoWindow();
+            changeComponentsInfoWindow.Owner = this;
+            changeComponentsInfoWindow.Topmost = true;
+            changeComponentsInfoWindow.ShowDialog();
+        }
+
+        private void ChangeEmployeesInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ChangeEmployeesInfoWindow changeEmployeesInfoWindow = new ChangeEmployeesInfoWindow();
+            changeEmployeesInfoWindow.Owner = this;
+            changeEmployeesInfoWindow.Topmost = true;
+            changeEmployeesInfoWindow.ShowDialog();
+        }
+
+        private void CreateConsignmentNote_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AddToConsignmentNoteWindow addToConsignmentNoteWindow = new AddToConsignmentNoteWindow();
+            addToConsignmentNoteWindow.Owner = this;
+            addToConsignmentNoteWindow.Topmost = true;
+            addToConsignmentNoteWindow.ShowDialog();
         }
     }
 }

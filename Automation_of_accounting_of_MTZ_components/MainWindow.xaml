@@ -6,16 +6,17 @@
         xmlns:local="clr-namespace:Automation_of_accounting_of_MTZ_components"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" Height="600" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White">
+
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="230"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="260"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="230"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="260"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
@@ -69,10 +70,16 @@
                             <TextBlock Text="Add components" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="ChangeComponentsInfo" Height="60" MouseDoubleClick="ChangeComponentsInfo_MouseDoubleClick" >
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="PencilRemove" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Remove components" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                            <materialDesign:PackIcon Kind="PencilRuler" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Change components info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="CreateConsignmentNote" Height="60" MouseDoubleClick="CreateConsignmentNote_MouseDoubleClick">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AddBox" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Create consignment note" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60">
@@ -81,10 +88,10 @@
                             <TextBlock Text="Create report" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="EmployeesInfo" Height="60">
+                    <ListViewItem x:Name="ChangeEmployeesInfo" Height="60" MouseDoubleClick="ChangeEmployeesInfo_MouseDoubleClick" >
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountBoxMultipleOutline" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Employees info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                            <materialDesign:PackIcon Kind="AccountCog" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Change employees info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem x:Name="AddEmployees" Height="60 " MouseDoubleClick="AddEmployees_MouseDoubleClick">
@@ -93,12 +100,12 @@
                             <TextBlock Text="Add employee" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="DeleteEmployees" Height="60">
+                    <!--<ListViewItem x:Name="DeleteEmployees" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountRemove" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Remove employee" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
-                    </ListViewItem>
+                    </ListViewItem>-->
                 </ListView>
             </StackPanel>
         </Grid>

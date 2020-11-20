@@ -51,9 +51,9 @@ namespace Automation_of_accounting_of_MTZ_components
                 return;
             }
 
-            if (loginField.Text != EmployeeChecks.CheckEmployeeLogin(loginField.Text))
+            if (loginField.Text != EmployeeChecks.CheckEmployeeLogin(loginField.Text, "Login not entered.", "Login contains invalid symbols.", "Allowed login length is 3-30 symbols."))
             {
-                MessageBox.Show(EmployeeChecks.CheckEmployeeLogin(loginField.Text));
+                MessageBox.Show(EmployeeChecks.CheckEmployeeLogin(loginField.Text, "Login not entered.", "Login contains invalid symbols.", "Allowed login length is 3-30 symbols."));
                 return;
             }
 

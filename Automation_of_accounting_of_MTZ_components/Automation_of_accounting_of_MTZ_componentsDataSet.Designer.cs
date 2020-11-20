@@ -1162,6 +1162,8 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             private global::System.Data.DataColumn columncomponentCode;
             
+            private global::System.Data.DataColumn columncomponentName;
+            
             private global::System.Data.DataColumn columncomponentWeight;
             
             private global::System.Data.DataColumn columncomponentCount;
@@ -1173,8 +1175,6 @@ namespace Automation_of_accounting_of_MTZ_components {
             private global::System.Data.DataColumn columntractorBrandCode;
             
             private global::System.Data.DataColumn columnavailabilityStatusCode;
-            
-            private global::System.Data.DataColumn columncomponentName;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1214,6 +1214,14 @@ namespace Automation_of_accounting_of_MTZ_components {
             public global::System.Data.DataColumn componentCodeColumn {
                 get {
                     return this.columncomponentCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn componentNameColumn {
+                get {
+                    return this.columncomponentName;
                 }
             }
             
@@ -1267,14 +1275,6 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn componentNameColumn {
-                get {
-                    return this.columncomponentName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1310,22 +1310,22 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ComponentRow AddComponentRow(double componentWeight, int componentCount, decimal componentCost, string componentDescription, TractorBrandRow parentTractorBrandRowBytractorBrandCode_FK, AvailabilityStatusRow parentAvailabilityStatusRowByavailabilityStatusCode_FK, string componentName) {
+            public ComponentRow AddComponentRow(string componentName, double componentWeight, int componentCount, decimal componentCost, string componentDescription, TractorBrandRow parentTractorBrandRowBytractorBrandCode_FK, AvailabilityStatusRow parentAvailabilityStatusRowByavailabilityStatusCode_FK) {
                 ComponentRow rowComponentRow = ((ComponentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
+                        componentName,
                         componentWeight,
                         componentCount,
                         componentCost,
                         componentDescription,
                         null,
-                        null,
-                        componentName};
+                        null};
                 if ((parentTractorBrandRowBytractorBrandCode_FK != null)) {
-                    columnValuesArray[5] = parentTractorBrandRowBytractorBrandCode_FK[0];
+                    columnValuesArray[6] = parentTractorBrandRowBytractorBrandCode_FK[0];
                 }
                 if ((parentAvailabilityStatusRowByavailabilityStatusCode_FK != null)) {
-                    columnValuesArray[6] = parentAvailabilityStatusRowByavailabilityStatusCode_FK[0];
+                    columnValuesArray[7] = parentAvailabilityStatusRowByavailabilityStatusCode_FK[0];
                 }
                 rowComponentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowComponentRow);
@@ -1357,13 +1357,13 @@ namespace Automation_of_accounting_of_MTZ_components {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
                 this.columncomponentCode = base.Columns["componentCode"];
+                this.columncomponentName = base.Columns["componentName"];
                 this.columncomponentWeight = base.Columns["componentWeight"];
                 this.columncomponentCount = base.Columns["componentCount"];
                 this.columncomponentCost = base.Columns["componentCost"];
                 this.columncomponentDescription = base.Columns["componentDescription"];
                 this.columntractorBrandCode = base.Columns["tractorBrandCode"];
                 this.columnavailabilityStatusCode = base.Columns["availabilityStatusCode"];
-                this.columncomponentName = base.Columns["componentName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1371,6 +1371,8 @@ namespace Automation_of_accounting_of_MTZ_components {
             private void InitClass() {
                 this.columncomponentCode = new global::System.Data.DataColumn("componentCode", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncomponentCode);
+                this.columncomponentName = new global::System.Data.DataColumn("componentName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncomponentName);
                 this.columncomponentWeight = new global::System.Data.DataColumn("componentWeight", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncomponentWeight);
                 this.columncomponentCount = new global::System.Data.DataColumn("componentCount", typeof(int), null, global::System.Data.MappingType.Element);
@@ -1383,8 +1385,6 @@ namespace Automation_of_accounting_of_MTZ_components {
                 base.Columns.Add(this.columntractorBrandCode);
                 this.columnavailabilityStatusCode = new global::System.Data.DataColumn("availabilityStatusCode", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnavailabilityStatusCode);
-                this.columncomponentName = new global::System.Data.DataColumn("componentName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncomponentName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columncomponentCode}, true));
                 this.columncomponentCode.AutoIncrement = true;
@@ -1393,15 +1393,14 @@ namespace Automation_of_accounting_of_MTZ_components {
                 this.columncomponentCode.AllowDBNull = false;
                 this.columncomponentCode.ReadOnly = true;
                 this.columncomponentCode.Unique = true;
+                this.columncomponentName.AllowDBNull = false;
+                this.columncomponentName.MaxLength = 100;
                 this.columncomponentWeight.AllowDBNull = false;
                 this.columncomponentCount.AllowDBNull = false;
                 this.columncomponentCost.AllowDBNull = false;
-                this.columncomponentDescription.AllowDBNull = false;
                 this.columncomponentDescription.MaxLength = 200;
                 this.columntractorBrandCode.AllowDBNull = false;
                 this.columnavailabilityStatusCode.AllowDBNull = false;
-                this.columncomponentName.AllowDBNull = false;
-                this.columncomponentName.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1535,6 +1534,8 @@ namespace Automation_of_accounting_of_MTZ_components {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ConsignmentNoteDataTable : global::System.Data.TypedTableBase<ConsignmentNoteRow> {
             
+            private global::System.Data.DataColumn columnconsignmentNoteCode;
+            
             private global::System.Data.DataColumn columnconsignmentNoteNumber;
             
             private global::System.Data.DataColumn columncomponentCount;
@@ -1580,6 +1581,14 @@ namespace Automation_of_accounting_of_MTZ_components {
             protected ConsignmentNoteDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn consignmentNoteCodeColumn {
+                get {
+                    return this.columnconsignmentNoteCode;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1675,10 +1684,11 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ConsignmentNoteRow AddConsignmentNoteRow(int componentCount, System.DateTime issueDate, decimal generalSum, ComponentRow parentComponentRowBycomponentCodeForCN_FK, ConsumerRow parentConsumerRowByconsumerCodeForCN_FK, EmployeeRow parentEmployeeRowByemployeeCodeForCN_FK) {
+            public ConsignmentNoteRow AddConsignmentNoteRow(string consignmentNoteNumber, int componentCount, System.DateTime issueDate, decimal generalSum, ComponentRow parentComponentRowBycomponentCodeForCN_FK, ConsumerRow parentConsumerRowByconsumerCodeForCN_FK, EmployeeRow parentEmployeeRowByemployeeCodeForCN_FK) {
                 ConsignmentNoteRow rowConsignmentNoteRow = ((ConsignmentNoteRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
+                        consignmentNoteNumber,
                         componentCount,
                         issueDate,
                         generalSum,
@@ -1686,13 +1696,13 @@ namespace Automation_of_accounting_of_MTZ_components {
                         null,
                         null};
                 if ((parentComponentRowBycomponentCodeForCN_FK != null)) {
-                    columnValuesArray[4] = parentComponentRowBycomponentCodeForCN_FK[0];
+                    columnValuesArray[5] = parentComponentRowBycomponentCodeForCN_FK[0];
                 }
                 if ((parentConsumerRowByconsumerCodeForCN_FK != null)) {
-                    columnValuesArray[5] = parentConsumerRowByconsumerCodeForCN_FK[0];
+                    columnValuesArray[6] = parentConsumerRowByconsumerCodeForCN_FK[0];
                 }
                 if ((parentEmployeeRowByemployeeCodeForCN_FK != null)) {
-                    columnValuesArray[6] = parentEmployeeRowByemployeeCodeForCN_FK[0];
+                    columnValuesArray[7] = parentEmployeeRowByemployeeCodeForCN_FK[0];
                 }
                 rowConsignmentNoteRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowConsignmentNoteRow);
@@ -1701,9 +1711,9 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ConsignmentNoteRow FindByconsignmentNoteNumber(int consignmentNoteNumber) {
+            public ConsignmentNoteRow FindByconsignmentNoteCode(int consignmentNoteCode) {
                 return ((ConsignmentNoteRow)(this.Rows.Find(new object[] {
-                            consignmentNoteNumber})));
+                            consignmentNoteCode})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1723,6 +1733,7 @@ namespace Automation_of_accounting_of_MTZ_components {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
+                this.columnconsignmentNoteCode = base.Columns["consignmentNoteCode"];
                 this.columnconsignmentNoteNumber = base.Columns["consignmentNoteNumber"];
                 this.columncomponentCount = base.Columns["componentCount"];
                 this.columnissueDate = base.Columns["issueDate"];
@@ -1735,7 +1746,9 @@ namespace Automation_of_accounting_of_MTZ_components {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnconsignmentNoteNumber = new global::System.Data.DataColumn("consignmentNoteNumber", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnconsignmentNoteCode = new global::System.Data.DataColumn("consignmentNoteCode", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnconsignmentNoteCode);
+                this.columnconsignmentNoteNumber = new global::System.Data.DataColumn("consignmentNoteNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnconsignmentNoteNumber);
                 this.columncomponentCount = new global::System.Data.DataColumn("componentCount", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncomponentCount);
@@ -1750,13 +1763,15 @@ namespace Automation_of_accounting_of_MTZ_components {
                 this.columnemployeeCode = new global::System.Data.DataColumn("employeeCode", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnemployeeCode);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnconsignmentNoteNumber}, true));
-                this.columnconsignmentNoteNumber.AutoIncrement = true;
-                this.columnconsignmentNoteNumber.AutoIncrementSeed = -1;
-                this.columnconsignmentNoteNumber.AutoIncrementStep = -1;
+                                this.columnconsignmentNoteCode}, true));
+                this.columnconsignmentNoteCode.AutoIncrement = true;
+                this.columnconsignmentNoteCode.AutoIncrementSeed = -1;
+                this.columnconsignmentNoteCode.AutoIncrementStep = -1;
+                this.columnconsignmentNoteCode.AllowDBNull = false;
+                this.columnconsignmentNoteCode.ReadOnly = true;
+                this.columnconsignmentNoteCode.Unique = true;
                 this.columnconsignmentNoteNumber.AllowDBNull = false;
-                this.columnconsignmentNoteNumber.ReadOnly = true;
-                this.columnconsignmentNoteNumber.Unique = true;
+                this.columnconsignmentNoteNumber.MaxLength = 9;
                 this.columncomponentCount.AllowDBNull = false;
                 this.columnissueDate.AllowDBNull = false;
                 this.columngeneralSum.AllowDBNull = false;
@@ -1900,6 +1915,10 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             private global::System.Data.DataColumn columnconsumerName;
             
+            private global::System.Data.DataColumn columnconsumerLegalAdress;
+            
+            private global::System.Data.DataColumn columnconsumerPhone;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ConsumerDataTable() {
@@ -1951,6 +1970,22 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn consumerLegalAdressColumn {
+                get {
+                    return this.columnconsumerLegalAdress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn consumerPhoneColumn {
+                get {
+                    return this.columnconsumerPhone;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1986,11 +2021,13 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ConsumerRow AddConsumerRow(string consumerName) {
+            public ConsumerRow AddConsumerRow(string consumerName, string consumerLegalAdress, string consumerPhone) {
                 ConsumerRow rowConsumerRow = ((ConsumerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        consumerName};
+                        consumerName,
+                        consumerLegalAdress,
+                        consumerPhone};
                 rowConsumerRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowConsumerRow);
                 return rowConsumerRow;
@@ -2022,6 +2059,8 @@ namespace Automation_of_accounting_of_MTZ_components {
             internal void InitVars() {
                 this.columnconsumerCode = base.Columns["consumerCode"];
                 this.columnconsumerName = base.Columns["consumerName"];
+                this.columnconsumerLegalAdress = base.Columns["consumerLegalAdress"];
+                this.columnconsumerPhone = base.Columns["consumerPhone"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2031,6 +2070,10 @@ namespace Automation_of_accounting_of_MTZ_components {
                 base.Columns.Add(this.columnconsumerCode);
                 this.columnconsumerName = new global::System.Data.DataColumn("consumerName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnconsumerName);
+                this.columnconsumerLegalAdress = new global::System.Data.DataColumn("consumerLegalAdress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnconsumerLegalAdress);
+                this.columnconsumerPhone = new global::System.Data.DataColumn("consumerPhone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnconsumerPhone);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnconsumerCode}, true));
                 this.columnconsumerCode.AutoIncrement = true;
@@ -2041,6 +2084,10 @@ namespace Automation_of_accounting_of_MTZ_components {
                 this.columnconsumerCode.Unique = true;
                 this.columnconsumerName.AllowDBNull = false;
                 this.columnconsumerName.MaxLength = 80;
+                this.columnconsumerLegalAdress.AllowDBNull = false;
+                this.columnconsumerLegalAdress.MaxLength = 100;
+                this.columnconsumerPhone.AllowDBNull = false;
+                this.columnconsumerPhone.MaxLength = 17;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3246,6 +3293,17 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string componentName {
+                get {
+                    return ((string)(this[this.tableComponent.componentNameColumn]));
+                }
+                set {
+                    this[this.tableComponent.componentNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public double componentWeight {
                 get {
                     return ((double)(this[this.tableComponent.componentWeightColumn]));
@@ -3281,7 +3339,12 @@ namespace Automation_of_accounting_of_MTZ_components {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string componentDescription {
                 get {
-                    return ((string)(this[this.tableComponent.componentDescriptionColumn]));
+                    try {
+                        return ((string)(this[this.tableComponent.componentDescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'componentDescription\' в таблице \'Component\' равно DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableComponent.componentDescriptionColumn] = value;
@@ -3312,17 +3375,6 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string componentName {
-                get {
-                    return ((string)(this[this.tableComponent.componentNameColumn]));
-                }
-                set {
-                    this[this.tableComponent.componentNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AvailabilityStatusRow AvailabilityStatusRow {
                 get {
                     return ((AvailabilityStatusRow)(this.GetParentRow(this.Table.ParentRelations["availabilityStatusCode_FK"])));
@@ -3341,6 +3393,18 @@ namespace Automation_of_accounting_of_MTZ_components {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["tractorBrandCode_FK"]);
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IscomponentDescriptionNull() {
+                return this.IsNull(this.tableComponent.componentDescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetcomponentDescriptionNull() {
+                this[this.tableComponent.componentDescriptionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3382,9 +3446,20 @@ namespace Automation_of_accounting_of_MTZ_components {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int consignmentNoteNumber {
+            public int consignmentNoteCode {
                 get {
-                    return ((int)(this[this.tableConsignmentNote.consignmentNoteNumberColumn]));
+                    return ((int)(this[this.tableConsignmentNote.consignmentNoteCodeColumn]));
+                }
+                set {
+                    this[this.tableConsignmentNote.consignmentNoteCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string consignmentNoteNumber {
+                get {
+                    return ((string)(this[this.tableConsignmentNote.consignmentNoteNumberColumn]));
                 }
                 set {
                     this[this.tableConsignmentNote.consignmentNoteNumberColumn] = value;
@@ -3524,6 +3599,28 @@ namespace Automation_of_accounting_of_MTZ_components {
                 }
                 set {
                     this[this.tableConsumer.consumerNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string consumerLegalAdress {
+                get {
+                    return ((string)(this[this.tableConsumer.consumerLegalAdressColumn]));
+                }
+                set {
+                    this[this.tableConsumer.consumerLegalAdressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string consumerPhone {
+                get {
+                    return ((string)(this[this.tableConsumer.consumerPhoneColumn]));
+                }
+                set {
+                    this[this.tableConsumer.consumerPhoneColumn] = value;
                 }
             }
             
@@ -4792,60 +4889,60 @@ SELECT availabilityStatusCode, availabilityStatusName FROM AvailabilityStatus WH
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Component";
             tableMapping.ColumnMappings.Add("componentCode", "componentCode");
+            tableMapping.ColumnMappings.Add("componentName", "componentName");
             tableMapping.ColumnMappings.Add("componentWeight", "componentWeight");
             tableMapping.ColumnMappings.Add("componentCount", "componentCount");
             tableMapping.ColumnMappings.Add("componentCost", "componentCost");
             tableMapping.ColumnMappings.Add("componentDescription", "componentDescription");
             tableMapping.ColumnMappings.Add("tractorBrandCode", "tractorBrandCode");
             tableMapping.ColumnMappings.Add("availabilityStatusCode", "availabilityStatusCode");
-            tableMapping.ColumnMappings.Add("componentName", "componentName");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Component] WHERE (([componentCode] = @Original_componentCode) AND ([componentWeight] = @Original_componentWeight) AND ([componentCount] = @Original_componentCount) AND ([componentCost] = @Original_componentCost) AND ((@IsNull_componentDescription = 1 AND [componentDescription] IS NULL) OR ([componentDescription] = @Original_componentDescription)) AND ([tractorBrandCode] = @Original_tractorBrandCode) AND ([availabilityStatusCode] = @Original_availabilityStatusCode) AND ([componentName] = @Original_componentName))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Component] WHERE (([componentCode] = @Original_componentCode) AND ([componentName] = @Original_componentName) AND ([componentWeight] = @Original_componentWeight) AND ([componentCount] = @Original_componentCount) AND ([componentCost] = @Original_componentCost) AND ((@IsNull_componentDescription = 1 AND [componentDescription] IS NULL) OR ([componentDescription] = @Original_componentDescription)) AND ([tractorBrandCode] = @Original_tractorBrandCode) AND ([availabilityStatusCode] = @Original_availabilityStatusCode))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentWeight", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "componentCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_componentDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tractorBrandCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tractorBrandCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_availabilityStatusCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "availabilityStatusCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Component] ([componentWeight], [componentCount], [componentCost], [componentDescription], [tractorBrandCode], [availabilityStatusCode], [componentName]) VALUES (@componentWeight, @componentCount, @componentCost, @componentDescription, @tractorBrandCode, @availabilityStatusCode, @componentName);
-SELECT componentCode, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode, componentName FROM Component WHERE (componentCode = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Component] ([componentName], [componentWeight], [componentCount], [componentCost], [componentDescription], [tractorBrandCode], [availabilityStatusCode]) VALUES (@componentName, @componentWeight, @componentCount, @componentCost, @componentDescription, @tractorBrandCode, @availabilityStatusCode);
+SELECT componentCode, componentName, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode FROM Component WHERE (componentCode = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentWeight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "componentCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tractorBrandCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tractorBrandCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@availabilityStatusCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "availabilityStatusCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Component] SET [componentWeight] = @componentWeight, [componentCount] = @componentCount, [componentCost] = @componentCost, [componentDescription] = @componentDescription, [tractorBrandCode] = @tractorBrandCode, [availabilityStatusCode] = @availabilityStatusCode, [componentName] = @componentName WHERE (([componentCode] = @Original_componentCode) AND ([componentWeight] = @Original_componentWeight) AND ([componentCount] = @Original_componentCount) AND ([componentCost] = @Original_componentCost) AND ((@IsNull_componentDescription = 1 AND [componentDescription] IS NULL) OR ([componentDescription] = @Original_componentDescription)) AND ([tractorBrandCode] = @Original_tractorBrandCode) AND ([availabilityStatusCode] = @Original_availabilityStatusCode) AND ([componentName] = @Original_componentName));
-SELECT componentCode, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode, componentName FROM Component WHERE (componentCode = @componentCode)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Component] SET [componentName] = @componentName, [componentWeight] = @componentWeight, [componentCount] = @componentCount, [componentCost] = @componentCost, [componentDescription] = @componentDescription, [tractorBrandCode] = @tractorBrandCode, [availabilityStatusCode] = @availabilityStatusCode WHERE (([componentCode] = @Original_componentCode) AND ([componentName] = @Original_componentName) AND ([componentWeight] = @Original_componentWeight) AND ([componentCount] = @Original_componentCount) AND ([componentCost] = @Original_componentCost) AND ((@IsNull_componentDescription = 1 AND [componentDescription] IS NULL) OR ([componentDescription] = @Original_componentDescription)) AND ([tractorBrandCode] = @Original_tractorBrandCode) AND ([availabilityStatusCode] = @Original_availabilityStatusCode));
+SELECT componentCode, componentName, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode FROM Component WHERE (componentCode = @componentCode)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentWeight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "componentCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tractorBrandCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tractorBrandCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@availabilityStatusCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "availabilityStatusCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentWeight", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "componentCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_componentDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tractorBrandCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tractorBrandCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_availabilityStatusCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "availabilityStatusCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCode", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "componentCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -4862,9 +4959,9 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT componentCode, componentWeight, componentCount, componentCost, componentDe" +
-                "scription, tractorBrandCode, availabilityStatusCode, componentName FROM Componen" +
-                "t";
+            this._commandCollection[0].CommandText = "SELECT componentCode, componentName, componentWeight, componentCount, componentCo" +
+                "st, componentDescription, tractorBrandCode, availabilityStatusCode FROM dbo.Comp" +
+                "onent";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4925,27 +5022,27 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_componentCode, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode, string Original_componentName) {
+        public virtual int Delete(int Original_componentCode, string Original_componentName, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_componentCode));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((double)(Original_componentWeight));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_componentCount));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_componentCost));
-            if ((Original_componentDescription == null)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_componentDescription));
-            }
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_tractorBrandCode));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_availabilityStatusCode));
             if ((Original_componentName == null)) {
                 throw new global::System.ArgumentNullException("Original_componentName");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_componentName));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_componentName));
             }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((double)(Original_componentWeight));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_componentCount));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(Original_componentCost));
+            if ((Original_componentDescription == null)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_componentDescription));
+            }
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_tractorBrandCode));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_availabilityStatusCode));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4966,24 +5063,24 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode, string componentName) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((double)(componentWeight));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(componentCount));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(componentCost));
-            if ((componentDescription == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(componentDescription));
-            }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(tractorBrandCode));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(availabilityStatusCode));
+        public virtual int Insert(string componentName, double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode) {
             if ((componentName == null)) {
                 throw new global::System.ArgumentNullException("componentName");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(componentName));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(componentName));
             }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((double)(componentWeight));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(componentCount));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(componentCost));
+            if ((componentDescription == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(componentDescription));
+            }
+            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(tractorBrandCode));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(availabilityStatusCode));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5005,59 +5102,59 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
+                    string componentName, 
                     double componentWeight, 
                     int componentCount, 
                     decimal componentCost, 
                     string componentDescription, 
                     int tractorBrandCode, 
                     int availabilityStatusCode, 
-                    string componentName, 
                     int Original_componentCode, 
+                    string Original_componentName, 
                     double Original_componentWeight, 
                     int Original_componentCount, 
                     decimal Original_componentCost, 
                     string Original_componentDescription, 
                     int Original_tractorBrandCode, 
                     int Original_availabilityStatusCode, 
-                    string Original_componentName, 
                     int componentCode) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((double)(componentWeight));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(componentCount));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(componentCost));
-            if ((componentDescription == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(componentDescription));
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(tractorBrandCode));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(availabilityStatusCode));
             if ((componentName == null)) {
                 throw new global::System.ArgumentNullException("componentName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(componentName));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(componentName));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_componentCode));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((double)(Original_componentWeight));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_componentCount));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_componentCost));
-            if ((Original_componentDescription == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((double)(componentWeight));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(componentCount));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(componentCost));
+            if ((componentDescription == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_componentDescription));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(componentDescription));
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_tractorBrandCode));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_availabilityStatusCode));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(tractorBrandCode));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(availabilityStatusCode));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_componentCode));
             if ((Original_componentName == null)) {
                 throw new global::System.ArgumentNullException("Original_componentName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_componentName));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_componentName));
             }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((double)(Original_componentWeight));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_componentCount));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(Original_componentCost));
+            if ((Original_componentDescription == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_componentDescription));
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_tractorBrandCode));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_availabilityStatusCode));
             this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(componentCode));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5079,8 +5176,8 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode, string componentName, int Original_componentCode, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode, string Original_componentName) {
-            return this.Update(componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode, componentName, Original_componentCode, Original_componentWeight, Original_componentCount, Original_componentCost, Original_componentDescription, Original_tractorBrandCode, Original_availabilityStatusCode, Original_componentName, Original_componentCode);
+        public virtual int Update(string componentName, double componentWeight, int componentCount, decimal componentCost, string componentDescription, int tractorBrandCode, int availabilityStatusCode, int Original_componentCode, string Original_componentName, double Original_componentWeight, int Original_componentCount, decimal Original_componentCost, string Original_componentDescription, int Original_tractorBrandCode, int Original_availabilityStatusCode) {
+            return this.Update(componentName, componentWeight, componentCount, componentCost, componentDescription, tractorBrandCode, availabilityStatusCode, Original_componentCode, Original_componentName, Original_componentWeight, Original_componentCount, Original_componentCost, Original_componentDescription, Original_tractorBrandCode, Original_availabilityStatusCode, Original_componentCode);
         }
     }
     
@@ -5205,6 +5302,7 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ConsignmentNote";
+            tableMapping.ColumnMappings.Add("consignmentNoteCode", "consignmentNoteCode");
             tableMapping.ColumnMappings.Add("consignmentNoteNumber", "consignmentNoteNumber");
             tableMapping.ColumnMappings.Add("componentCount", "componentCount");
             tableMapping.ColumnMappings.Add("issueDate", "issueDate");
@@ -5215,9 +5313,10 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[ConsignmentNote] WHERE (([consignmentNoteNumber] = @Original_consignmentNoteNumber) AND ([componentCount] = @Original_componentCount) AND ([issueDate] = @Original_issueDate) AND ([generalSum] = @Original_generalSum) AND ([componentCode] = @Original_componentCode) AND ([consumerCode] = @Original_consumerCode) AND ([employeeCode] = @Original_employeeCode))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[ConsignmentNote] WHERE (([consignmentNoteCode] = @Original_consignmentNoteCode) AND ([consignmentNoteNumber] = @Original_consignmentNoteNumber) AND ([componentCount] = @Original_componentCount) AND ([issueDate] = @Original_issueDate) AND ([generalSum] = @Original_generalSum) AND ([componentCode] = @Original_componentCode) AND ([consumerCode] = @Original_consumerCode) AND ([employeeCode] = @Original_employeeCode))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consignmentNoteNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consignmentNoteCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consignmentNoteNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_issueDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "issueDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_generalSum", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "generalSum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -5226,9 +5325,10 @@ SELECT componentCode, componentWeight, componentCount, componentCost, componentD
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_employeeCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "employeeCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ConsignmentNote] ([componentCount], [issueDate], [generalSum], [componentCode], [consumerCode], [employeeCode]) VALUES (@componentCount, @issueDate, @generalSum, @componentCode, @consumerCode, @employeeCode);
-SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCode, consumerCode, employeeCode FROM ConsignmentNote WHERE (consignmentNoteNumber = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ConsignmentNote] ([consignmentNoteNumber], [componentCount], [issueDate], [generalSum], [componentCode], [consumerCode], [employeeCode]) VALUES (@consignmentNoteNumber, @componentCount, @issueDate, @generalSum, @componentCode, @consumerCode, @employeeCode);
+SELECT consignmentNoteCode, consignmentNoteNumber, componentCount, issueDate, generalSum, componentCode, consumerCode, employeeCode FROM ConsignmentNote WHERE (consignmentNoteCode = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consignmentNoteNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@issueDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "issueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@generalSum", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "generalSum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5237,23 +5337,25 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@employeeCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "employeeCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ConsignmentNote] SET [componentCount] = @componentCount, [issueDate] = @issueDate, [generalSum] = @generalSum, [componentCode] = @componentCode, [consumerCode] = @consumerCode, [employeeCode] = @employeeCode WHERE (([consignmentNoteNumber] = @Original_consignmentNoteNumber) AND ([componentCount] = @Original_componentCount) AND ([issueDate] = @Original_issueDate) AND ([generalSum] = @Original_generalSum) AND ([componentCode] = @Original_componentCode) AND ([consumerCode] = @Original_consumerCode) AND ([employeeCode] = @Original_employeeCode));
-SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCode, consumerCode, employeeCode FROM ConsignmentNote WHERE (consignmentNoteNumber = @consignmentNoteNumber)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ConsignmentNote] SET [consignmentNoteNumber] = @consignmentNoteNumber, [componentCount] = @componentCount, [issueDate] = @issueDate, [generalSum] = @generalSum, [componentCode] = @componentCode, [consumerCode] = @consumerCode, [employeeCode] = @employeeCode WHERE (([consignmentNoteCode] = @Original_consignmentNoteCode) AND ([consignmentNoteNumber] = @Original_consignmentNoteNumber) AND ([componentCount] = @Original_componentCount) AND ([issueDate] = @Original_issueDate) AND ([generalSum] = @Original_generalSum) AND ([componentCode] = @Original_componentCode) AND ([consumerCode] = @Original_consumerCode) AND ([employeeCode] = @Original_employeeCode));
+SELECT consignmentNoteCode, consignmentNoteNumber, componentCount, issueDate, generalSum, componentCode, consumerCode, employeeCode FROM ConsignmentNote WHERE (consignmentNoteCode = @consignmentNoteCode)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consignmentNoteNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@issueDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "issueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@generalSum", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "generalSum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@componentCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consumerCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@employeeCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "employeeCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consignmentNoteNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consignmentNoteCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consignmentNoteNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_issueDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "issueDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_generalSum", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "generalSum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_componentCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "componentCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_employeeCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "employeeCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consignmentNoteNumber", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consignmentNoteCode", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "consignmentNoteCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5269,8 +5371,8 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCod" +
-                "e, consumerCode, employeeCode FROM dbo.ConsignmentNote";
+            this._commandCollection[0].CommandText = "SELECT consignmentNoteCode, consignmentNoteNumber, componentCount, issueDate, gen" +
+                "eralSum, componentCode, consumerCode, employeeCode FROM dbo.ConsignmentNote";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5331,14 +5433,20 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_consignmentNoteNumber, int Original_componentCount, System.DateTime Original_issueDate, decimal Original_generalSum, int Original_componentCode, int Original_consumerCode, int Original_employeeCode) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_consignmentNoteNumber));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_componentCount));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_issueDate));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_generalSum));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_componentCode));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_consumerCode));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_employeeCode));
+        public virtual int Delete(int Original_consignmentNoteCode, string Original_consignmentNoteNumber, int Original_componentCount, System.DateTime Original_issueDate, decimal Original_generalSum, int Original_componentCode, int Original_consumerCode, int Original_employeeCode) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_consignmentNoteCode));
+            if ((Original_consignmentNoteNumber == null)) {
+                throw new global::System.ArgumentNullException("Original_consignmentNoteNumber");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_consignmentNoteNumber));
+            }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_componentCount));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_issueDate));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(Original_generalSum));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_componentCode));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_consumerCode));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_employeeCode));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5359,13 +5467,19 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int componentCount, System.DateTime issueDate, decimal generalSum, int componentCode, int consumerCode, int employeeCode) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(componentCount));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(issueDate));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(generalSum));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(componentCode));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(consumerCode));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(employeeCode));
+        public virtual int Insert(string consignmentNoteNumber, int componentCount, System.DateTime issueDate, decimal generalSum, int componentCode, int consumerCode, int employeeCode) {
+            if ((consignmentNoteNumber == null)) {
+                throw new global::System.ArgumentNullException("consignmentNoteNumber");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(consignmentNoteNumber));
+            }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(componentCount));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(issueDate));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(generalSum));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(componentCode));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(consumerCode));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(employeeCode));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5386,21 +5500,49 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int componentCount, System.DateTime issueDate, decimal generalSum, int componentCode, int consumerCode, int employeeCode, int Original_consignmentNoteNumber, int Original_componentCount, System.DateTime Original_issueDate, decimal Original_generalSum, int Original_componentCode, int Original_consumerCode, int Original_employeeCode, int consignmentNoteNumber) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(componentCount));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(issueDate));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(generalSum));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(componentCode));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(consumerCode));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(employeeCode));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_consignmentNoteNumber));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_componentCount));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_issueDate));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(Original_generalSum));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_componentCode));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_consumerCode));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_employeeCode));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(consignmentNoteNumber));
+        public virtual int Update(
+                    string consignmentNoteNumber, 
+                    int componentCount, 
+                    System.DateTime issueDate, 
+                    decimal generalSum, 
+                    int componentCode, 
+                    int consumerCode, 
+                    int employeeCode, 
+                    int Original_consignmentNoteCode, 
+                    string Original_consignmentNoteNumber, 
+                    int Original_componentCount, 
+                    System.DateTime Original_issueDate, 
+                    decimal Original_generalSum, 
+                    int Original_componentCode, 
+                    int Original_consumerCode, 
+                    int Original_employeeCode, 
+                    int consignmentNoteCode) {
+            if ((consignmentNoteNumber == null)) {
+                throw new global::System.ArgumentNullException("consignmentNoteNumber");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(consignmentNoteNumber));
+            }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(componentCount));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(issueDate));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(generalSum));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(componentCode));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(consumerCode));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(employeeCode));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_consignmentNoteCode));
+            if ((Original_consignmentNoteNumber == null)) {
+                throw new global::System.ArgumentNullException("Original_consignmentNoteNumber");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_consignmentNoteNumber));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_componentCount));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_issueDate));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(Original_generalSum));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_componentCode));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_consumerCode));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_employeeCode));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(consignmentNoteCode));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5421,8 +5563,8 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int componentCount, System.DateTime issueDate, decimal generalSum, int componentCode, int consumerCode, int employeeCode, int Original_consignmentNoteNumber, int Original_componentCount, System.DateTime Original_issueDate, decimal Original_generalSum, int Original_componentCode, int Original_consumerCode, int Original_employeeCode) {
-            return this.Update(componentCount, issueDate, generalSum, componentCode, consumerCode, employeeCode, Original_consignmentNoteNumber, Original_componentCount, Original_issueDate, Original_generalSum, Original_componentCode, Original_consumerCode, Original_employeeCode, Original_consignmentNoteNumber);
+        public virtual int Update(string consignmentNoteNumber, int componentCount, System.DateTime issueDate, decimal generalSum, int componentCode, int consumerCode, int employeeCode, int Original_consignmentNoteCode, string Original_consignmentNoteNumber, int Original_componentCount, System.DateTime Original_issueDate, decimal Original_generalSum, int Original_componentCode, int Original_consumerCode, int Original_employeeCode) {
+            return this.Update(consignmentNoteNumber, componentCount, issueDate, generalSum, componentCode, consumerCode, employeeCode, Original_consignmentNoteCode, Original_consignmentNoteNumber, Original_componentCount, Original_issueDate, Original_generalSum, Original_componentCode, Original_consumerCode, Original_employeeCode, Original_consignmentNoteCode);
         }
     }
     
@@ -5549,30 +5691,39 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
             tableMapping.DataSetTable = "Consumer";
             tableMapping.ColumnMappings.Add("consumerCode", "consumerCode");
             tableMapping.ColumnMappings.Add("consumerName", "consumerName");
+            tableMapping.ColumnMappings.Add("consumerLegalAdress", "consumerLegalAdress");
+            tableMapping.ColumnMappings.Add("consumerPhone", "consumerPhone");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Consumer] WHERE (([consumerCode] = @Original_consumerCode) AND" +
-                " ([consumerName] = @Original_consumerName))";
+                " ([consumerName] = @Original_consumerName) AND ([consumerLegalAdress] = @Origina" +
+                "l_consumerLegalAdress) AND ([consumerPhone] = @Original_consumerPhone))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerLegalAdress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerLegalAdress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerPhone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerPhone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Consumer] ([consumerName]) VALUES (@consumerName);\r\nSELECT con" +
-                "sumerCode, consumerName FROM Consumer WHERE (consumerCode = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Consumer] ([consumerName], [consumerLegalAdress], [consumerPhone]) VALUES (@consumerName, @consumerLegalAdress, @consumerPhone);
+SELECT consumerCode, consumerName, consumerLegalAdress, consumerPhone FROM Consumer WHERE (consumerCode = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consumerName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consumerLegalAdress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerLegalAdress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consumerPhone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerPhone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Consumer] SET [consumerName] = @consumerName WHERE (([consumerCode]" +
-                " = @Original_consumerCode) AND ([consumerName] = @Original_consumerName));\r\nSELE" +
-                "CT consumerCode, consumerName FROM Consumer WHERE (consumerCode = @consumerCode)" +
-                "";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Consumer] SET [consumerName] = @consumerName, [consumerLegalAdress] = @consumerLegalAdress, [consumerPhone] = @consumerPhone WHERE (([consumerCode] = @Original_consumerCode) AND ([consumerName] = @Original_consumerName) AND ([consumerLegalAdress] = @Original_consumerLegalAdress) AND ([consumerPhone] = @Original_consumerPhone));
+SELECT consumerCode, consumerName, consumerLegalAdress, consumerPhone FROM Consumer WHERE (consumerCode = @consumerCode)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consumerName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consumerLegalAdress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerLegalAdress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consumerPhone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerPhone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerLegalAdress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerLegalAdress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_consumerPhone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "consumerPhone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@consumerCode", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "consumerCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -5589,7 +5740,8 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT consumerCode, consumerName FROM dbo.Consumer";
+            this._commandCollection[0].CommandText = "SELECT consumerCode, consumerName, consumerLegalAdress, consumerPhone FROM dbo.Co" +
+                "nsumer";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5650,13 +5802,25 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_consumerCode, string Original_consumerName) {
+        public virtual int Delete(int Original_consumerCode, string Original_consumerName, string Original_consumerLegalAdress, string Original_consumerPhone) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_consumerCode));
             if ((Original_consumerName == null)) {
                 throw new global::System.ArgumentNullException("Original_consumerName");
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_consumerName));
+            }
+            if ((Original_consumerLegalAdress == null)) {
+                throw new global::System.ArgumentNullException("Original_consumerLegalAdress");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_consumerLegalAdress));
+            }
+            if ((Original_consumerPhone == null)) {
+                throw new global::System.ArgumentNullException("Original_consumerPhone");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_consumerPhone));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5678,12 +5842,24 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string consumerName) {
+        public virtual int Insert(string consumerName, string consumerLegalAdress, string consumerPhone) {
             if ((consumerName == null)) {
                 throw new global::System.ArgumentNullException("consumerName");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(consumerName));
+            }
+            if ((consumerLegalAdress == null)) {
+                throw new global::System.ArgumentNullException("consumerLegalAdress");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(consumerLegalAdress));
+            }
+            if ((consumerPhone == null)) {
+                throw new global::System.ArgumentNullException("consumerPhone");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(consumerPhone));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5705,21 +5881,45 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string consumerName, int Original_consumerCode, string Original_consumerName, int consumerCode) {
+        public virtual int Update(string consumerName, string consumerLegalAdress, string consumerPhone, int Original_consumerCode, string Original_consumerName, string Original_consumerLegalAdress, string Original_consumerPhone, int consumerCode) {
             if ((consumerName == null)) {
                 throw new global::System.ArgumentNullException("consumerName");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(consumerName));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_consumerCode));
+            if ((consumerLegalAdress == null)) {
+                throw new global::System.ArgumentNullException("consumerLegalAdress");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(consumerLegalAdress));
+            }
+            if ((consumerPhone == null)) {
+                throw new global::System.ArgumentNullException("consumerPhone");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(consumerPhone));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_consumerCode));
             if ((Original_consumerName == null)) {
                 throw new global::System.ArgumentNullException("Original_consumerName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_consumerName));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_consumerName));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(consumerCode));
+            if ((Original_consumerLegalAdress == null)) {
+                throw new global::System.ArgumentNullException("Original_consumerLegalAdress");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_consumerLegalAdress));
+            }
+            if ((Original_consumerPhone == null)) {
+                throw new global::System.ArgumentNullException("Original_consumerPhone");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_consumerPhone));
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(consumerCode));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5740,8 +5940,8 @@ SELECT consignmentNoteNumber, componentCount, issueDate, generalSum, componentCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string consumerName, int Original_consumerCode, string Original_consumerName) {
-            return this.Update(consumerName, Original_consumerCode, Original_consumerName, Original_consumerCode);
+        public virtual int Update(string consumerName, string consumerLegalAdress, string consumerPhone, int Original_consumerCode, string Original_consumerName, string Original_consumerLegalAdress, string Original_consumerPhone) {
+            return this.Update(consumerName, consumerLegalAdress, consumerPhone, Original_consumerCode, Original_consumerName, Original_consumerLegalAdress, Original_consumerPhone, Original_consumerCode);
         }
     }
     

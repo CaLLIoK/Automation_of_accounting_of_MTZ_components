@@ -26,9 +26,9 @@ namespace Automation_of_accounting_of_MTZ_components.Data_validation
             return str;
         }
 
-        public static string CheckEmployeeLogin(string login)
+        public static string CheckEmployeeLogin(string login, string notEntered, string invalidSymbols, string allowedLenght)
         {
-            if (login == string.Empty) return "Login not entered.";
+            if (login == string.Empty) return notEntered;
             else
             {
                 if (login.Length > 2 && login.Length <= 20)
@@ -36,10 +36,10 @@ namespace Automation_of_accounting_of_MTZ_components.Data_validation
                     char[] loginArray = login.ToCharArray();
                     for (int i = 0; i < loginArray.Length; i++)
                     {
-                        if (!char.IsLetter(loginArray[i]) && !char.IsDigit(loginArray[i]) && loginArray[i] != '_') return "Login contains invalid symbols.";
+                        if (!char.IsLetter(loginArray[i]) && !char.IsDigit(loginArray[i]) && loginArray[i] != '_') return invalidSymbols;
                     }
                 }
-                else return "Allowed login length is 3-30 symbols.";
+                else return allowedLenght;
             }
             return login;
         }

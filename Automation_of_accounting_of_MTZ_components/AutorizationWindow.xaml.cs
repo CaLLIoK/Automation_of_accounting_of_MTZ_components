@@ -24,6 +24,8 @@ namespace Automation_of_accounting_of_MTZ_components
     /// </summary>
     public partial class AutorizationWindow : Window
     {
+        SqlConnection myConnectionString = new SqlConnection(@"Data Source=(local)\SQLEXPRESS; Initial Catalog=Automation_of_accounting_of_MTZ_components; Integrated Security=True");
+
         public AutorizationWindow()
         {
             InitializeComponent();
@@ -34,7 +36,6 @@ namespace Automation_of_accounting_of_MTZ_components
             string login = userLogin.Text;
             string password = userPassword.Password.ToString();
 
-            SqlConnection myConnectionString = new SqlConnection(@"Data Source=(local)\SQLEXPRESS; Initial Catalog=Automation_of_accounting_of_MTZ_components; Integrated Security=True");
             string selectEmployeeInfoQuery = "SELECT * FROM Employee WHERE [employeeLogin] = '" + login + "'and [employeePassword]='" + password + "'";
             using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectEmployeeInfoQuery, myConnectionString))
             {
@@ -45,6 +46,10 @@ namespace Automation_of_accounting_of_MTZ_components
                     StreamWriter loginFile = new StreamWriter("UserLogin.txt");
                     loginFile.Write(login);
                     loginFile.Close();
+
+                    string components = string.Empty;
+                    MessageBox.Show(SelectComponents(components));
+
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     this.Close();
@@ -55,6 +60,24 @@ namespace Automation_of_accounting_of_MTZ_components
                     return;
                 }
             }
+        }
+
+        private string SelectComponents(string component)
+        {
+            string selectComponentsQuery = "SELECT * FROM Component JOIN TractorBrand ON Component.tractorBrandCode = TractorBrand.tractorBrandCode WHERE [componentCount] < 100";
+            using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectComponentsQuery, myConnectionString))
+            {
+                DataTable table = new DataTable();
+                dataAdapter.Fill(table);
+                if (table.Rows.Count > 0)
+                {
+                    for (int i = 0; i < table.Rows.Count; i++)
+                    {
+                        component += table.Rows[i]["componentName"].ToString() + " (" + table.Rows[i]["tractorBrandName"].ToString() + ") " + "\t - \t" + table.Rows[i]["componentCount"].ToString() + "\n";
+                    }
+                }
+            }
+            return component;
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
