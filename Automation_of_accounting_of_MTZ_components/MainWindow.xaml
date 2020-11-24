@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Automation_of_accounting_of_MTZ_components"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="600" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White">
+        mc:Ignorable="d" Height="695" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White">
 
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -88,24 +88,30 @@
                             <TextBlock Text="Create report" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="ChangeEmployeesInfo" Height="60" MouseDoubleClick="ChangeEmployeesInfo_MouseDoubleClick" >
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountCog" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Change employees info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                        </StackPanel>
-                    </ListViewItem>
                     <ListViewItem x:Name="AddEmployees" Height="60 " MouseDoubleClick="AddEmployees_MouseDoubleClick">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountAdd" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Add employee" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <!--<ListViewItem x:Name="DeleteEmployees" Height="60">
+                    <ListViewItem x:Name="ChangeEmployeesInfo" Height="60" MouseDoubleClick="ChangeEmployeesInfo_MouseDoubleClick">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountRemove" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Remove employee" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                            <materialDesign:PackIcon Kind="AccountCog" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Change employees info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
-                    </ListViewItem>-->
+                    </ListViewItem>
+                    <ListViewItem x:Name="AddConsumers" Height="60" MouseDoubleClick="AddConsumers_MouseDoubleClick">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="BankPlus" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Add consumer" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ChangeConsumersInfo" Height="60" MouseDoubleClick="ChangeConsumersInfo_MouseDoubleClick">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Bank" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Change consumers info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
                 </ListView>
             </StackPanel>
         </Grid>

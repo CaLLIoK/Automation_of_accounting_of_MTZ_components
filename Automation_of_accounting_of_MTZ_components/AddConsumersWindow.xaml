@@ -1,0 +1,46 @@
+﻿<Window x:Class="Automation_of_accounting_of_MTZ_components.AddConsumersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Automation_of_accounting_of_MTZ_components"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="AddConsumersWindow" Width="630" Height="420" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid>
+        <Label x:Name="Title" Content="Add consumer" FontSize="30" FontWeight="Bold" FontFamily="Helvetica" Margin="20"/>
+        <Label x:Name="Description" Content="Fill the fields below to adding consumer" FontSize="20" FontWeight="Light" FontFamily="Helvetica" Margin="20 65 0 0"/>
+        <Button x:Name="CloseButton" Style="{StaticResource MaterialDesignFlatButton}" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" ToolTip="MaterialDesignFlatButton">Close</Button>
+        <Grid Width="300" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 90 0 0">
+            <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
+                <iconPacks:PackIconMaterial Kind="Account" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
+                <TextBox x:Name="nameField" materialDesign:HintAssist.Hint="Consumer name" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -10 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 90 0 0">
+                <iconPacks:PackIconMaterial Kind="phone" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
+                <TextBox x:Name="phoneField" materialDesign:HintAssist.Hint="Consumer phone" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -10 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Width="300" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320 90 0 0">
+            <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
+                <iconPacks:PackIconMaterial Kind="NearMe" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
+                <TextBox x:Name="streetField" materialDesign:HintAssist.Hint="Street" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -10 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 90 0 0">
+                <iconPacks:PackIconMaterial Kind="OfficeBuilding" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
+                <TextBox x:Name="buildingFiled" materialDesign:HintAssist.Hint="Building" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -10 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 150 0 0">
+                <iconPacks:PackIconMaterial Kind="Door" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
+                <TextBox x:Name="officeField" materialDesign:HintAssist.Hint="Office" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -7 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                </TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Width="250" Height="300" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="AddButton" Width="180" Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Content="ADD CONSUMER" Margin="35 200 0 0" Click="AddButton_Click"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

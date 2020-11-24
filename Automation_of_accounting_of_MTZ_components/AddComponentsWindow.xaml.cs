@@ -170,9 +170,9 @@ namespace Automation_of_accounting_of_MTZ_components
 
             description = new TextRange(descriptionField.Document.ContentStart, descriptionField.Document.ContentEnd).Text;
 
-            if (description != ComponentsChecks.CheckComponentDescription(description, "Description contains invalid symbols.", "Description lenght less than 200 symbols."))
+            if (description != ComponentsChecks.CheckComponentDescription(description, "Description contains invalid symbols.", "Description lenght more than 200 symbols."))
             {
-                MessageBox.Show(ComponentsChecks.CheckComponentDescription(description, "Description contains invalid symbols.", "Description lenght less than 200 symbols."));
+                MessageBox.Show(ComponentsChecks.CheckComponentDescription(description, "Description contains invalid symbols.", "Description lenght more than 200 symbols."));
                 return;
             }
 
@@ -198,6 +198,7 @@ namespace Automation_of_accounting_of_MTZ_components
                     AddToNonExistingEntry();
                 }
             }
+            MessageBox.Show("Adding component is successful!");
         }
     }
 }

@@ -32,6 +32,8 @@ namespace Automation_of_accounting_of_MTZ_components
 
             AddEmployees.Visibility = Visibility.Hidden;
             ChangeEmployeesInfo.Visibility = Visibility.Hidden;
+            AddConsumers.Visibility = Visibility.Hidden;
+            ChangeConsumersInfo.Visibility = Visibility.Hidden;
 
             StreamReader file = new StreamReader("UserLogin.txt");
             string employeeLogin = file.ReadLine();
@@ -53,6 +55,8 @@ namespace Automation_of_accounting_of_MTZ_components
             {
                 AddEmployees.Visibility = Visibility.Visible;
                 ChangeEmployeesInfo.Visibility = Visibility.Visible;
+                AddConsumers.Visibility = Visibility.Visible;
+                ChangeConsumersInfo.Visibility = Visibility.Visible;
             }
         }
 
@@ -145,6 +149,22 @@ namespace Automation_of_accounting_of_MTZ_components
             addToConsignmentNoteWindow.Owner = this;
             addToConsignmentNoteWindow.Topmost = true;
             addToConsignmentNoteWindow.ShowDialog();
+        }
+
+        private void AddConsumers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AddConsumersWindow addConsumersWindow = new AddConsumersWindow();
+            addConsumersWindow.Owner = this;
+            addConsumersWindow.Topmost = true;
+            addConsumersWindow.ShowDialog();
+        }
+
+        private void ChangeConsumersInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ChangeConsumersInfoWindow changeConsumersInfoWindow = new ChangeConsumersInfoWindow();
+            changeConsumersInfoWindow.Owner = this;
+            changeConsumersInfoWindow.Topmost = true;
+            changeConsumersInfoWindow.ShowDialog();
         }
     }
 }

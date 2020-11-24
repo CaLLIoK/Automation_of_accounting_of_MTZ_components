@@ -100,11 +100,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AccountSettings.xaml.cs">
-      <DependentUpon>AccountSettings.xaml</DependentUpon>
+    <Compile Include="AccountSettingsWindow.xaml.cs">
+      <DependentUpon>AccountSettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddComponents.xaml.cs">
-      <DependentUpon>AddComponents.xaml</DependentUpon>
+    <Compile Include="AddComponentsWindow.xaml.cs">
+      <DependentUpon>AddComponentsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddConsumersWindow.xaml.cs">
+      <DependentUpon>AddConsumersWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddToConsignmentNoteWindow.xaml.cs">
       <DependentUpon>AddToConsignmentNoteWindow.xaml</DependentUpon>
@@ -120,6 +123,9 @@
     <Compile Include="ChangeComponentsInfoWindow.xaml.cs">
       <DependentUpon>ChangeComponentsInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangeConsumersInfoWindow.xaml.cs">
+      <DependentUpon>ChangeConsumersInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChangeEmployeesInfoWindow.xaml.cs">
       <DependentUpon>ChangeEmployeesInfoWindow.xaml</DependentUpon>
     </Compile>
@@ -127,17 +133,22 @@
       <DependentUpon>ComponentsInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data_validation\ComponentsChecks.cs" />
+    <Compile Include="Data_validation\ConsumersChecks.cs" />
     <Compile Include="Data_validation\EmployeeChecks.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeContext.cs" />
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AccountSettings.xaml">
+    <Page Include="AccountSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddComponents.xaml">
+    <Page Include="AddComponentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddConsumersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangeComponentsInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeConsumersInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
