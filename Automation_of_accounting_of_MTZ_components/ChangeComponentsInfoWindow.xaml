@@ -7,11 +7,16 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ChangeComponentsInfoWindow" Width="1200" Height="640" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Width="1200" Height="640" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Window.Resources>
         <Style x:Key="ElementStyle" TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </Window.Resources>
 
@@ -22,19 +27,19 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Content="Change the data in the datagrid and click on this button" FontSize="20" FontWeight="Light" FontFamily="Helvetica" Margin="0 165 0 0"/>
+            <Label Content="Enter the string in the datagrid and click on this button" FontSize="20" FontWeight="Light" FontFamily="Helvetica" Margin="0 165 0 0"/>
             <Label Content="Select an item and click on this button" HorizontalAlignment="Right" FontSize="20" FontWeight="Light" FontFamily="Helvetica" Margin="0 165 40 0"/>
-            <Button x:Name="SaveButton" Width="90" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Content="SAVE" Margin="20 190 0 0" Click="SaveButton_Click"/>
+            <Button x:Name="ChangeButton" Width="90" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Content="CHANGE" Margin="20 190 0 0" Click="ChangeButton_Click"/>
             <Button x:Name="DeleteButton" Width="90" Height="40" HorizontalAlignment="Right" VerticalAlignment="Center" Content="DELETE" Margin="0 190 60 0" Click="DeleteButton_Click"/>
         </Grid>
-        <DataGrid x:Name="ComponentsInfoGrid" Width="1150" Height="400" HorizontalAlignment="Center" Margin="0 20 0 70" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <DataGrid x:Name="ComponentsInfoGrid" Width="1150" Height="400" HorizontalAlignment="Center" Margin="0 20 0 70" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding tractorBrandName}" Header="Tractor name" Width="155" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentName}" Header="Component name" Width="150" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentDescription}" Header="Component description" Width="205" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
-                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentWeight}" Header="Component weight (KG)" Width="180" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
-                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentCount}" Header="Component count" Width="140" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
-                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentCost}" Header="Component cost (BYR)" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
+                <DataGridTextColumn ElementStyle="{StaticResource TextBlockStyle}" Binding="{Binding componentWeight}" Header="Component weight (KG)" Width="180" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
+                <DataGridTextColumn ElementStyle="{StaticResource TextBlockStyle}" Binding="{Binding componentCount}" Header="Component count" Width="140" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
+                <DataGridTextColumn ElementStyle="{StaticResource TextBlockStyle}" Binding="{Binding componentCost}" Header="Component cost (BYR)" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding availabilityStatusName}" Header="Availability status" Width="200" FontFamily="Helvetica" FontWeight="Light" FontSize="14"/>
             </DataGrid.Columns>
         </DataGrid>

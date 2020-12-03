@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Automation_of_accounting_of_MTZ_components"
-       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ChangeEmployeesInfoWindow" Width="1070" Height="640" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Width="1070" Height="640" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Window.Resources>
         <Style x:Key="ElementStyle" TargetType="TextBlock">
@@ -22,12 +22,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Content="Change the data in the datagrid and click on this button" FontSize="20" FontWeight="Light" FontFamily="Helvetica" Margin="0 165 0 0"/>
+            <Label Content="Enter the string in the datagrid and click on this button" FontSize="20" FontWeight="Light" FontFamily="Helvetica" Margin="0 165 0 0"/>
             <Label Content="Select an item and click on this button" HorizontalAlignment="Right" FontSize="20" FontWeight="Light" FontFamily="Helvetica" Margin="0 165 170 0"/>
-            <Button x:Name="SaveButton" Width="90" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Content="SAVE" Margin="20 190 0 0" Click="SaveButton_Click"/>
+            <Button x:Name="ChangeButton" Width="90" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Content="CHANGE" Margin="20 190 0 0" Click="ChangeButton_Click"/>
             <Button x:Name="DeleteButton" Width="90" Height="40" HorizontalAlignment="Right" VerticalAlignment="Center" Content="DELETE" Margin="0 190 190 0" Click="DeleteButton_Click"/>
         </Grid>
-        <DataGrid x:Name="EmployeesInfoGrid" Width="1020" Height="400" HorizontalAlignment="Center" Margin="0 20 0 70" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <DataGrid x:Name="EmployeesInfoGrid" Width="1020" Height="400" HorizontalAlignment="Center" Margin="0 20 0 70" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding employeeName}" Header="Employee name" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding employeeSurname}" Header="Employee surname" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>

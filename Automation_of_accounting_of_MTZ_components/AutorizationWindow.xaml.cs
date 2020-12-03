@@ -43,20 +43,32 @@ namespace Automation_of_accounting_of_MTZ_components
                 dataAdapter.Fill(table);
                 if (table.Rows.Count > 0)
                 {
-                    StreamWriter loginFile = new StreamWriter("UserLogin.txt");
-                    loginFile.Write(login);
-                    loginFile.Close();
+                    if (table.Rows[0]["employeeLogin"].ToString() == login && table.Rows[0]["employeePassword"].ToString() == password)
+                    {
+                        StreamWriter loginFile = new StreamWriter("UserLogin.txt");
+                        loginFile.Write(login);
+                        loginFile.Close();
 
-                    string components = string.Empty;
-                    MessageBox.Show(SelectComponents(components));
+                        StreamWriter autorizationStatus = new StreamWriter("AutorizationStatus.txt");
+                        autorizationStatus.Write("Autorized");
+                        autorizationStatus.Close();
 
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
+                        string components = string.Empty;
+                        MessageBox.Show(SelectComponents(components));
+
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong login or password.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }                
                 }
                 else if (table.Rows.Count == 0)
                 {
-                    MessageBox.Show("Wrong login or password.");
+                    MessageBox.Show("Wrong login or password.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
             }

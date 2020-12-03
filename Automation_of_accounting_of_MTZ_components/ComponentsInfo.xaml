@@ -7,7 +7,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ComponentsInfoWindow" Width="1500" Height="540" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Width="1500" Height="540" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Window.Resources>
         <Style x:Key="ElementStyle" TargetType="TextBlock">
@@ -38,7 +38,7 @@
             <Button x:Name="SearchButton" Width="90" Height="40" HorizontalAlignment="Right" VerticalAlignment="Center" Content="SEARCH" Margin="0 280 10 0" Click="SearchButton_Click"/>
             <Button x:Name="ClearButton" Width="90" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Content="CLEAR" Margin="20 280 0 0" Click="ClearButton_Click"/>
         </Grid>
-        <DataGrid x:Name="ComponentsGrid" Width="1150" Height="400" HorizontalAlignment="Right" Margin="0 20 30 0" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <DataGrid x:Name="ComponentsGrid" Width="1150" Height="400" HorizontalAlignment="Right" Margin="0 20 30 0" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding tractorBrandName}" Header="Tractor name" Width="155" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentName}" Header="Component name" Width="150" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>

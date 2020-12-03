@@ -135,10 +135,11 @@
     <Compile Include="Data_validation\ComponentsChecks.cs" />
     <Compile Include="Data_validation\ConsumersChecks.cs" />
     <Compile Include="Data_validation\EmployeeChecks.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeContext.cs" />
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectCountOfComponentsWindow.xaml.cs">
+      <DependentUpon>SelectCountOfComponentsWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AccountSettingsWindow.xaml">
       <SubType>Designer</SubType>
@@ -157,10 +158,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AutorizationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +190,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectCountOfComponentsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

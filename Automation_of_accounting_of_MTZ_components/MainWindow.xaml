@@ -88,18 +88,6 @@
                             <TextBlock Text="Create report" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="AddEmployees" Height="60 " MouseDoubleClick="AddEmployees_MouseDoubleClick">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountAdd" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Add employee" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ChangeEmployeesInfo" Height="60" MouseDoubleClick="ChangeEmployeesInfo_MouseDoubleClick">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountCog" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Change employees info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                        </StackPanel>
-                    </ListViewItem>
                     <ListViewItem x:Name="AddConsumers" Height="60" MouseDoubleClick="AddConsumers_MouseDoubleClick">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="BankPlus" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
@@ -112,8 +100,23 @@
                             <TextBlock Text="Change consumers info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         </StackPanel>
                     </ListViewItem>
+                    <ListViewItem x:Name="AddEmployees" Height="60 " MouseDoubleClick="AddEmployees_MouseDoubleClick">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountAdd" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Add employee" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ChangeEmployeesInfo" Height="60" MouseDoubleClick="ChangeEmployeesInfo_MouseDoubleClick">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountCog" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Change employees info" VerticalAlignment="Center" Margin="20 10 0 8" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
                 </ListView>
             </StackPanel>
+        </Grid>
+        <Grid x:Name="WorkSpace" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="1020" Height="635">
+
         </Grid>
     </Grid>
 </Window>

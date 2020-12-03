@@ -44,13 +44,13 @@ namespace Automation_of_accounting_of_MTZ_components
                 dataAdapter.Fill(table);
                 if (table.Rows.Count > 0)
                 {
-                    employeeCode = Convert.ToInt32(table.Rows[0]["employeeCode"].ToString());
+                    employeeCode = int.Parse(table.Rows[0]["employeeCode"].ToString());
                     loginField.Text = table.Rows[0]["employeeLogin"].ToString();
                     passwordField.Password = table.Rows[0]["employeePassword"].ToString();
                     nameField.Text = table.Rows[0]["employeeName"].ToString();
                     surnameField.Text = table.Rows[0]["employeeSurname"].ToString();
                     patronymicField.Text = table.Rows[0]["employeePatronymic"].ToString();
-                    postCode = Convert.ToInt32(table.Rows[0]["postCode"].ToString());
+                    postCode = int.Parse(table.Rows[0]["postCode"].ToString());
                 }
             }
 
@@ -81,31 +81,31 @@ namespace Automation_of_accounting_of_MTZ_components
                 dataAdapter.Fill(table);
                 if (table.Rows.Count > 0)
                 {
-                    employeeCode = Convert.ToInt32(table.Rows[0]["employeeCode"].ToString());
+                    employeeCode = int.Parse(table.Rows[0]["employeeCode"].ToString());
                 }
             }
 
             if (nameField.Text != EmployeeChecks.CheckEmployeeData(nameField.Text, "Name not entered.", "Name contains invalid symbols.", "Allowed name length is 2-30 symbols."))
             {
-                MessageBox.Show(EmployeeChecks.CheckEmployeeData(nameField.Text, "Name not entered.", "Name contains invalid symbols.", "Allowed name length is 2-30 symbols."));
+                MessageBox.Show(EmployeeChecks.CheckEmployeeData(nameField.Text, "Name not entered.", "Name contains invalid symbols.", "Allowed name length is 2-30 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (surnameField.Text != EmployeeChecks.CheckEmployeeData(surnameField.Text, "Surname not entered.", "Surname contains invalid symbols.", "Allowed surname length is 2-30 symbols."))
             {
-                MessageBox.Show(EmployeeChecks.CheckEmployeeData(surnameField.Text, "Surname not entered.", "Surname contains invalid symbols.", "Allowed surname length is 2-30 symbols."));
+                MessageBox.Show(EmployeeChecks.CheckEmployeeData(surnameField.Text, "Surname not entered.", "Surname contains invalid symbols.", "Allowed surname length is 2-30 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (patronymicField.Text != EmployeeChecks.CheckEmployeeData(patronymicField.Text, "Patronymic not entered.", "Patronymic contains invalid symbols.", "Allowed patronymic length is 2-30 symbols."))
             {
-                MessageBox.Show(EmployeeChecks.CheckEmployeeData(patronymicField.Text, "Patronymic not entered.", "Patronymic contains invalid symbols.", "Allowed patronymic length is 2-30 symbols."));
+                MessageBox.Show(EmployeeChecks.CheckEmployeeData(patronymicField.Text, "Patronymic not entered.", "Patronymic contains invalid symbols.", "Allowed patronymic length is 2-30 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (loginField.Text != EmployeeChecks.CheckEmployeeLogin(loginField.Text, "Login not entered.", "Login contains invalid symbols.", "Allowed login length is 3-30 symbols."))
             {
-                MessageBox.Show(EmployeeChecks.CheckEmployeeLogin(loginField.Text, "Login not entered.", "Login contains invalid symbols.", "Allowed login length is 3-30 symbols."));
+                MessageBox.Show(EmployeeChecks.CheckEmployeeLogin(loginField.Text, "Login not entered.", "Login contains invalid symbols.", "Allowed login length is 3-30 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -116,35 +116,16 @@ namespace Automation_of_accounting_of_MTZ_components
                 dataAdapter.Fill(table);
                 if (table.Rows.Count > 0 && table.Rows[0]["employeeLogin"].ToString() != employeeLogin)
                 {
-                    MessageBox.Show("This login is not available, please enter another one.");
+                    MessageBox.Show("This login is not available, please enter another one.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
             }
 
             if (passwordField.Password.ToString() != EmployeeChecks.CheckEmployeePassword(passwordField.Password.ToString()))
             {
-                MessageBox.Show(EmployeeChecks.CheckEmployeePassword(passwordField.Password.ToString()));
+                MessageBox.Show(EmployeeChecks.CheckEmployeePassword(passwordField.Password.ToString()), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            //if (postField.Text == string.Empty)
-            //{
-            //    MessageBox.Show("Post not selected.");
-            //    return;
-            //}
-
-            //int postCode = 0;
-            //string selectPostCodeQuery = "SELECT postCode FROM Post WHERE [postName] = '" + postField.Text + "'";
-
-            //using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectPostCodeQuery, myConnectionString))
-            //{
-            //    DataTable table = new DataTable();
-            //    dataAdapter.Fill(table);
-            //    if (table.Rows.Count > 0)
-            //    {
-            //        postCode = Convert.ToInt32(table.Rows[0]["postCode"].ToString());
-            //    }
-            //}
 
             string alterationQuery = "SELECT * FROM Employee WHERE [employeeCode] = '" + employeeCode + "'";
             using (SqlDataAdapter dataAdapter = new SqlDataAdapter(alterationQuery, myConnectionString))
@@ -155,7 +136,7 @@ namespace Automation_of_accounting_of_MTZ_components
                 {
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "UPDATE Employee SET employeeLogin = @login, employeePassword = @password, employeeName = @name, employeeSurname = @surname, employeePatronymic = @patronymic WHERE employeeCode = @code"; //question?
+                    cmd.CommandText = "UPDATE Employee SET employeeLogin = @login, employeePassword = @password, employeeName = @name, employeeSurname = @surname, employeePatronymic = @patronymic WHERE employeeCode = @code";
                     cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = loginField.Text;
                     cmd.Parameters.Add("@code", SqlDbType.Int).Value = employeeCode;
                     cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = passwordField.Password.ToString();
@@ -166,8 +147,7 @@ namespace Automation_of_accounting_of_MTZ_components
                     myConnectionString.Open();
                     cmd.ExecuteNonQuery();
                     myConnectionString.Close();
-
-                    MessageBox.Show("Changed saved.");
+                    MessageBox.Show("Changes saved.", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     StreamWriter writeFile = new StreamWriter("UserLogin.txt");
                     writeFile.Write(loginField.Text);
@@ -179,7 +159,7 @@ namespace Automation_of_accounting_of_MTZ_components
                 }
                 else
                 {
-                    MessageBox.Show("You haven't made any changes.");
+                    MessageBox.Show("You haven't made any changes.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
             }

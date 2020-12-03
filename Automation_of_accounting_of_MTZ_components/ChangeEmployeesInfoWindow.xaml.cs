@@ -35,9 +35,13 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void FillDataGrid()
         {
+            StreamReader file = new StreamReader("UserLogin.txt");
+            string login = file.ReadLine();
+            file.Close();
+
             string componentsInfoQuery = "SELECT employeeName, employeeSurname, employeePatronymic, employeeLogin, employeePassword, postName " +
                                          "FROM Employee " +
-                                         "JOIN Post ON Employee.postCode = Post.postCode";
+                                         "JOIN Post ON Employee.postCode = Post.postCode WHERE employeeLogin != '" + login + "'";
 
             DataTable table = new DataTable();
             using (SqlCommand cmd = new SqlCommand(componentsInfoQuery, connectionString))
@@ -57,6 +61,8 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
 
@@ -64,21 +70,12 @@ namespace Automation_of_accounting_of_MTZ_components
         {
             if (EmployeesInfoGrid.SelectedItem == null)
             {
-                MessageBox.Show("Can't delete the blank entry.");
+                MessageBox.Show("Can't delete the blank entry.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             else
             {
-                StreamReader file = new StreamReader("UserLogin.txt");
-                string employeeLogin = file.ReadLine();
-                file.Close();
-
                 DataRowView employeeInfo = (DataRowView)EmployeesInfoGrid.SelectedItems[0];
-                if (employeeInfo["employeeLogin"].ToString() == employeeLogin)
-                {
-                    MessageBox.Show("You can't delete your own account.");
-                    return;
-                }
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "DELETE FROM Employee WHERE [employeeLogin] = @login";
@@ -88,13 +85,50 @@ namespace Automation_of_accounting_of_MTZ_components
                 cmd.ExecuteNonQuery();
                 FillDataGrid();
                 connectionString.Close();
-                MessageBox.Show("Deletion completed successfully.");
+                MessageBox.Show("Deletion completed successfully.", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (EmployeesInfoGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Can't change the blank entry.");
+                return;
+            }
+            else
+            {
+                DataRowView employeeInfo = (DataRowView)EmployeesInfoGrid.SelectedItems[0];
+                RegistrationWindow registrationWindow = new RegistrationWindow();
+                string selectEmployeeInfoQuery = "SELECT employeeCode FROM Employee JOIN Post ON Employee.postCode = Post.postCode " +
+                                                 "WHERE [employeeName] = '" + employeeInfo["employeeName"].ToString() + "' AND [employeeSurname] = '" + employeeInfo["employeeSurname"].ToString() + "' AND [employeePatronymic] = '" + employeeInfo["employeePatronymic"].ToString() + "' " +
+                                                 "AND [employeeLogin] = '" + employeeInfo["employeeLogin"].ToString() + "' AND [employeePassword] = '" + employeeInfo["employeePassword"].ToString() + "' AND [postName] = '" + employeeInfo["postName"].ToString() + "'";
+                using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectEmployeeInfoQuery, connectionString))
+                {
+                    DataTable table = new DataTable();
+                    dataAdapter.Fill(table);
+                    if (table.Rows.Count > 0)
+                    {
+                        StreamWriter employeeCode = new StreamWriter("EmpCode.txt");
+                        employeeCode.Write(table.Rows[0]["employeeCode"].ToString());
+                        employeeCode.Close();
+                    }
+                }
+                registrationWindow.Title.Content = "Change employee information";
+                registrationWindow.Description.Content = "Change the fields that you need";
+                registrationWindow.RegisterButton.Visibility = Visibility.Hidden;
+                registrationWindow.SaveButton.Visibility = Visibility.Visible;
+                registrationWindow.SingInButton.Visibility = Visibility.Hidden;
+                registrationWindow.Account.Visibility = Visibility.Hidden;
+                registrationWindow.nameField.Text = employeeInfo["employeeName"].ToString();
+                registrationWindow.surnameField.Text = employeeInfo["employeeSurname"].ToString();
+                registrationWindow.patronymicField.Text = employeeInfo["employeePatronymic"].ToString();
+                registrationWindow.loginField.Text = employeeInfo["employeeLogin"].ToString();
+                registrationWindow.passwordField.Password = employeeInfo["employeePassword"].ToString();
+                registrationWindow.postField.Text = employeeInfo["postName"].ToString();
+                registrationWindow.Show();
+                this.Close();
+            }
         }
     }
 }

@@ -60,6 +60,8 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
 
@@ -69,15 +71,15 @@ namespace Automation_of_accounting_of_MTZ_components
 
             if (tractorNameField.Text == string.Empty && componentNameField.Text == string.Empty && availabilityStatusNameField.Text == string.Empty)
             {
-                MessageBox.Show("Search fields aren't filled.");
+                MessageBox.Show("Search fields aren't filled.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (tractorNameField.Text != string.Empty && componentNameField.Text == string.Empty && availabilityStatusNameField.Text == string.Empty)
             {
-                if (tractorNameField.Text != ComponentsChecks.CheckTractorBrandName(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols."))
+                if (tractorNameField.Text != ComponentsChecks.CheckTractorBrandNameForSearch(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols."))
                 {
-                    MessageBox.Show(ComponentsChecks.CheckTractorBrandName(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols."));
+                    MessageBox.Show(ComponentsChecks.CheckTractorBrandNameForSearch(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 componentsInfoQuery = "SELECT tractorBrandName, componentName, componentDescription, componentWeight, componentCount, componentCost, availabilityStatusName " +
@@ -89,9 +91,9 @@ namespace Automation_of_accounting_of_MTZ_components
             
             if (componentNameField.Text != string.Empty && tractorNameField.Text == string.Empty && availabilityStatusNameField.Text == string.Empty)
             {
-                if (componentNameField.Text != ComponentsChecks.CheckComponentName(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."))
+                if (componentNameField.Text != ComponentsChecks.CheckComponentNameForSearch(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."))
                 {
-                    MessageBox.Show(ComponentsChecks.CheckComponentName(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."));
+                    MessageBox.Show(ComponentsChecks.CheckComponentNameForSearch(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 componentsInfoQuery = "SELECT tractorBrandName, componentName, componentDescription, componentWeight, componentCount, componentCost, availabilityStatusName " +
@@ -112,9 +114,9 @@ namespace Automation_of_accounting_of_MTZ_components
 
             if (tractorNameField.Text != string.Empty && componentNameField.Text != string.Empty && availabilityStatusNameField.Text == string.Empty)
             {
-                if (tractorNameField.Text != ComponentsChecks.CheckTractorBrandName(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols.") && componentNameField.Text != ComponentsChecks.CheckComponentName(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."))
+                if (tractorNameField.Text != ComponentsChecks.CheckTractorBrandNameForSearch(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols.") && componentNameField.Text != ComponentsChecks.CheckComponentNameForSearch(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."))
                 {
-                    MessageBox.Show(ComponentsChecks.CheckTractorBrandName(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols.") + "\n" + ComponentsChecks.CheckComponentName(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."));
+                    MessageBox.Show(ComponentsChecks.CheckTractorBrandNameForSearch(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols.") + "\n" + ComponentsChecks.CheckComponentNameForSearch(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 componentsInfoQuery = "SELECT tractorBrandName, componentName, componentDescription, componentWeight, componentCount, componentCost, availabilityStatusName " +
@@ -126,9 +128,9 @@ namespace Automation_of_accounting_of_MTZ_components
 
             if (tractorNameField.Text != string.Empty && availabilityStatusNameField.Text != string.Empty && componentNameField.Text == string.Empty)
             {
-                if (tractorNameField.Text != ComponentsChecks.CheckTractorBrandName(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols."))
+                if (tractorNameField.Text != ComponentsChecks.CheckTractorBrandNameForSearch(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols."))
                 {
-                    MessageBox.Show(ComponentsChecks.CheckTractorBrandName(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols."));
+                    MessageBox.Show(ComponentsChecks.CheckTractorBrandNameForSearch(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 componentsInfoQuery = "SELECT tractorBrandName, componentName, componentDescription, componentWeight, componentCount, componentCost, availabilityStatusName " +
@@ -140,9 +142,9 @@ namespace Automation_of_accounting_of_MTZ_components
 
             if (componentNameField.Text != string.Empty && availabilityStatusNameField.Text != string.Empty && tractorNameField.Text == string.Empty)
             {
-                if (componentNameField.Text != ComponentsChecks.CheckComponentName(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."))
+                if (componentNameField.Text != ComponentsChecks.CheckComponentNameForSearch(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."))
                 {
-                    MessageBox.Show(ComponentsChecks.CheckComponentName(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."));
+                    MessageBox.Show(ComponentsChecks.CheckComponentNameForSearch(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 componentsInfoQuery = "SELECT tractorBrandName, componentName, componentDescription, componentWeight, componentCount, componentCost, availabilityStatusName " +
@@ -154,9 +156,9 @@ namespace Automation_of_accounting_of_MTZ_components
 
             if (tractorNameField.Text != string.Empty && componentNameField.Text != string.Empty && availabilityStatusNameField.Text != string.Empty)
             {
-                if (tractorNameField.Text != ComponentsChecks.CheckTractorBrandName(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols.") && componentNameField.Text != ComponentsChecks.CheckComponentName(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."))
+                if (tractorNameField.Text != ComponentsChecks.CheckTractorBrandNameForSearch(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols.") && componentNameField.Text != ComponentsChecks.CheckComponentNameForSearch(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."))
                 {
-                    MessageBox.Show(ComponentsChecks.CheckTractorBrandName(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols.") + "\n" + ComponentsChecks.CheckComponentName(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."));
+                    MessageBox.Show(ComponentsChecks.CheckTractorBrandNameForSearch(tractorNameField.Text, "Tractor name contains invalid symbols.", "Allowed tractor name length is 3-100 symbols.") + "\n" + ComponentsChecks.CheckComponentNameForSearch(componentNameField.Text, "Component name contains invalid symbols.", "Allowed component name length is 3-100 symbols."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 componentsInfoQuery = "SELECT tractorBrandName, componentName, componentDescription, componentWeight, componentCount, componentCost, availabilityStatusName " +

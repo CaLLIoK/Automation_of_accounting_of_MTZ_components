@@ -32,8 +32,6 @@ namespace Automation_of_accounting_of_MTZ_components
 
             AddEmployees.Visibility = Visibility.Hidden;
             ChangeEmployeesInfo.Visibility = Visibility.Hidden;
-            AddConsumers.Visibility = Visibility.Hidden;
-            ChangeConsumersInfo.Visibility = Visibility.Hidden;
 
             StreamReader file = new StreamReader("UserLogin.txt");
             string employeeLogin = file.ReadLine();
@@ -55,14 +53,13 @@ namespace Automation_of_accounting_of_MTZ_components
             {
                 AddEmployees.Visibility = Visibility.Visible;
                 ChangeEmployeesInfo.Visibility = Visibility.Visible;
-                AddConsumers.Visibility = Visibility.Visible;
-                ChangeConsumersInfo.Visibility = Visibility.Visible;
             }
         }
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+            File.WriteAllText(@"AutorizationStatus.txt", string.Empty);
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -84,6 +81,7 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void ChangeAccButton_Click(object sender, RoutedEventArgs e)
         {
+            File.WriteAllText(@"AutorizationStatus.txt", string.Empty);
             AutorizationWindow autorizationWindow = new AutorizationWindow();
             autorizationWindow.Show();
             this.Close();
@@ -92,25 +90,31 @@ namespace Automation_of_accounting_of_MTZ_components
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             AccountSettings accountSettings = new AccountSettings();
-            accountSettings.Owner = this;
-            accountSettings.Topmost = true;
-            accountSettings.ShowDialog();
+            //accountSettings.Owner = this;
+            //accountSettings.Topmost = true;
+            //accountSettings.ShowDialog();
+            accountSettings.Show();
+            this.Close();
         }
 
         private void ComponentsInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ComponentsInfo componentsInfo = new ComponentsInfo();
-            componentsInfo.Owner = this;
-            componentsInfo.Topmost = true;
-            componentsInfo.ShowDialog();
+            //componentsInfo.Owner = this;
+            //componentsInfo.Topmost = true;
+            //componentsInfo.ShowDialog();
+            componentsInfo.Show();
+            this.Close();
         }
 
         private void AddComponents_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            AddComponents addComponents = new AddComponents();
-            addComponents.Owner = this;
-            addComponents.Topmost = true;
-            addComponents.ShowDialog();
+            AddComponentsWindow addComponents = new AddComponentsWindow();
+            //addComponents.Owner = this;
+            //addComponents.Topmost = true;
+            //addComponents.ShowDialog();
+            addComponents.Show();
+            this.Close();
         }
 
         private void AddEmployees_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -122,49 +126,61 @@ namespace Automation_of_accounting_of_MTZ_components
             registrationWindow.Account.Visibility = Visibility.Hidden;
             registrationWindow.SingInButton.Visibility = Visibility.Hidden;
             registrationWindow.successfulRegistration = "Adding employee is successful!";
-            registrationWindow.Owner = this;
-            registrationWindow.Topmost = true;
-            registrationWindow.ShowDialog();
+            //registrationWindow.Owner = this;
+            //registrationWindow.Topmost = true;
+            //registrationWindow.ShowDialog();
+            registrationWindow.Show();
+            this.Close();
         }
 
         private void ChangeComponentsInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ChangeComponentsInfoWindow changeComponentsInfoWindow = new ChangeComponentsInfoWindow();
-            changeComponentsInfoWindow.Owner = this;
-            changeComponentsInfoWindow.Topmost = true;
-            changeComponentsInfoWindow.ShowDialog();
+            //changeComponentsInfoWindow.Owner = this;
+            //changeComponentsInfoWindow.Topmost = true;
+            //changeComponentsInfoWindow.ShowDialog();
+            changeComponentsInfoWindow.Show();
+            this.Close();
         }
 
         private void ChangeEmployeesInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ChangeEmployeesInfoWindow changeEmployeesInfoWindow = new ChangeEmployeesInfoWindow();
-            changeEmployeesInfoWindow.Owner = this;
-            changeEmployeesInfoWindow.Topmost = true;
-            changeEmployeesInfoWindow.ShowDialog();
+            //changeEmployeesInfoWindow.Owner = this;
+            //changeEmployeesInfoWindow.Topmost = true;
+            //changeEmployeesInfoWindow.ShowDialog();
+            changeEmployeesInfoWindow.Show();
+            this.Close();
         }
 
         private void CreateConsignmentNote_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             AddToConsignmentNoteWindow addToConsignmentNoteWindow = new AddToConsignmentNoteWindow();
-            addToConsignmentNoteWindow.Owner = this;
-            addToConsignmentNoteWindow.Topmost = true;
-            addToConsignmentNoteWindow.ShowDialog();
+            //addToConsignmentNoteWindow.Owner = this;
+            //addToConsignmentNoteWindow.Topmost = true;
+            //addToConsignmentNoteWindow.ShowDialog();
+            addToConsignmentNoteWindow.Show();
+            this.Close();
         }
 
         private void AddConsumers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             AddConsumersWindow addConsumersWindow = new AddConsumersWindow();
-            addConsumersWindow.Owner = this;
-            addConsumersWindow.Topmost = true;
-            addConsumersWindow.ShowDialog();
+            //addConsumersWindow.Owner = this;
+            //addConsumersWindow.Topmost = true;
+            //addConsumersWindow.ShowDialog();
+            addConsumersWindow.Show();
+            this.Close();
         }
 
         private void ChangeConsumersInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ChangeConsumersInfoWindow changeConsumersInfoWindow = new ChangeConsumersInfoWindow();
-            changeConsumersInfoWindow.Owner = this;
-            changeConsumersInfoWindow.Topmost = true;
-            changeConsumersInfoWindow.ShowDialog();
+            //changeConsumersInfoWindow.Owner = this;
+            //changeConsumersInfoWindow.Topmost = true;
+            //changeConsumersInfoWindow.ShowDialog();
+            changeConsumersInfoWindow.Show();
+            this.Close();
         }
     }
 }
