@@ -36,29 +36,29 @@
         </Grid>
 
         <Grid Width="905" Height="400" Margin="0 330 95 0">
-            <TextBox Background="White" Height="40" Width="705" Margin="0 70 0 290" HorizontalAlignment="Left" BorderBrush="LightGray"></TextBox>
+            <!--<TextBox Background="White" Height="40" Width="705" Margin="0 70 0 290" HorizontalAlignment="Left" BorderBrush="LightGray"></TextBox>
             <TextBlock Style="{StaticResource TextBlockStyle}" Text="Tractor name" Width="155" Height="20" FontFamily="Helvetica" FontWeight="SemiBold" FontSize="16" Foreground="DimGray" Margin="0 85 750 300"/>
             <TextBlock Style="{StaticResource TextBlockStyle}" Text="Component name" Height="20" FontFamily="Helvetica" FontWeight="SemiBold" FontSize="16" Foreground="DimGray" Margin="155 82 581 298"/>
             <TextBlock Style="{StaticResource TextBlockStyle}" Text="Component weight (KG)" Width="210" Height="20" FontFamily="Helvetica" FontWeight="SemiBold" FontSize="16" Foreground="DimGray" Margin="324 82 371 298"/>
             <TextBlock Style="{StaticResource TextBlockStyle}" Text="Component count" Width="167" Height="20" FontFamily="Helvetica" FontWeight="SemiBold" FontSize="16" Foreground="DimGray" Margin="534 82 204 298"/>
-            <ListBox x:Name="basket" Width="705" Height="260" FontFamily="Helvetica" FontWeight="Light" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 30" Background="White"/>
-            <!--<DataGrid x:Name="basketGrid" Width="705" Height="300" FontFamily="Helvetica" FontWeight="Light" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 30" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+            <ListBox x:Name="basket" Width="705" Height="260" FontFamily="Helvetica" FontWeight="Light" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 30" Background="White"/>-->
+            <DataGrid x:Name="basketGrid" Width="705" Height="300" FontFamily="Helvetica" FontWeight="Light" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 30" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding tractorBrandName}" Header="Tractor name" Width="155" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                    <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentName}" Header="Component name" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                    <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentWeight}" Header="Component weight (KG)" Width="210" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                    <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentCount}" Header="Component count" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding Path=TractorBrandName}" Header="Tractor name" Width="155" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding Path=ComponentName}" Header="Component name" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource TextBlockStyle}" Binding="{Binding Path=ComponetWeight}" Header="Component weight (KG)" Width="210" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource TextBlockStyle}" Binding="{Binding Path=Count}" Header="Component count" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                 </DataGrid.Columns>
-            </DataGrid>-->
+            </DataGrid>
         </Grid>
-
+    
         <StackPanel Orientation="Horizontal" Width="290" Height="70" HorizontalAlignment="Right" Margin="0 120 10 0">
             <iconPacks:PackIconMaterial Kind="Key" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 23 0 0"/>
             <TextBox x:Name="numberField" materialDesign:HintAssist.Hint="Consignment note number" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -3 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Width="290" Height="70" HorizontalAlignment="Right" Margin="0 230 10 0">
-            <iconPacks:PackIconMaterial Kind="Bank" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 20 0 0"/>
-            <ComboBox x:Name="consumerField" materialDesign:HintAssist.Hint="Select consumer" MaxDropDownHeight="120" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 -7 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+            <iconPacks:PackIconMaterial Kind="Bank" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Margin="10 32 0 0"/>
+            <ComboBox x:Name="consumerField" materialDesign:HintAssist.Hint="Select consumer" MaxDropDownHeight="120" FontFamily="Helvetica" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 8 0 0" Foreground="Black" Background="Transparent" Width="235" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
         </StackPanel>
 
         <Button x:Name="AddButton" Width="40" Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="305 0 0 10" Background="Transparent" BorderBrush="Black" Click="AddButton_Click">

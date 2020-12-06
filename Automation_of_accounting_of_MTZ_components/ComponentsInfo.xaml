@@ -38,15 +38,15 @@
             <Button x:Name="SearchButton" Width="90" Height="40" HorizontalAlignment="Right" VerticalAlignment="Center" Content="SEARCH" Margin="0 280 10 0" Click="SearchButton_Click"/>
             <Button x:Name="ClearButton" Width="90" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Content="CLEAR" Margin="20 280 0 0" Click="ClearButton_Click"/>
         </Grid>
-        <DataGrid x:Name="ComponentsGrid" Width="1150" Height="400" HorizontalAlignment="Right" Margin="0 20 30 0" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+        <DataGrid x:Name="ComponentsGrid" Width="1150" Height="400" HorizontalAlignment="Right" Margin="0 20 30 0" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding tractorBrandName}" Header="Tractor name" Width="155" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                 <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentName}" Header="Component name" Width="150" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentDescription}" Header="Component description" Width="205" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentWeight}" Header="Component weight (KG)" Width="180" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentCount}" Header="Component count" Width="140" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentCost}" Header="Component cost (BYR)" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
-                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding availabilityStatusName}" Header="Availability status" Width="200" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentDescription}" Header="Component description" Width="205" FontFamily="Helvetica" FontWeight="Light" FontSize="16" IsReadOnly="True"/>
+                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentWeight}" Header="Component weight (KG)" Width="180" FontFamily="Helvetica" FontWeight="Light" FontSize="16" IsReadOnly="True"/>
+                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentCount}" Header="Component count" Width="140" FontFamily="Helvetica" FontWeight="Light" FontSize="16" IsReadOnly="True"/>
+                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding componentCost}" Header="Component cost (BYR)" Width="170" FontFamily="Helvetica" FontWeight="Light" FontSize="16" IsReadOnly="True"/>
+                <DataGridTextColumn ElementStyle="{StaticResource ElementStyle}" Binding="{Binding availabilityStatusName}" Header="Availability status" Width="200" FontFamily="Helvetica" FontWeight="Light" FontSize="16" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

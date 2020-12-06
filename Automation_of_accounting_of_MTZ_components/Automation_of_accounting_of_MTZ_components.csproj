@@ -78,6 +78,10 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=3.2.0.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.3.2.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -132,14 +136,23 @@
     <Compile Include="ComponentsInfo.xaml.cs">
       <DependentUpon>ComponentsInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateReportWindow.xaml.cs">
+      <DependentUpon>CreateReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data_validation\ComponentsChecks.cs" />
     <Compile Include="Data_validation\ConsumersChecks.cs" />
     <Compile Include="Data_validation\EmployeeChecks.cs" />
+    <Compile Include="PartsMovementReportWindow.xaml.cs">
+      <DependentUpon>PartsMovementReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectCountOfComponentsWindow.xaml.cs">
       <DependentUpon>SelectCountOfComponentsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpecificPartMovementReport.xaml.cs">
+      <DependentUpon>SpecificPartMovementReport.xaml</DependentUpon>
     </Compile>
     <Page Include="AccountSettingsWindow.xaml">
       <SubType>Designer</SubType>
@@ -177,6 +190,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -189,11 +206,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PartsMovementReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegistrationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SelectCountOfComponentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpecificPartMovementReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Automation_of_accounting_of_MTZ_components.Data_validation;
 
 namespace Automation_of_accounting_of_MTZ_components
@@ -193,7 +183,7 @@ namespace Automation_of_accounting_of_MTZ_components
                     }
 
                     string selectConsumerPhoneQuery = "SELECT * FROM Consumer WHERE [consumerPhone] = '" + phoneField.Text + "'";
-                    using (SqlDataAdapter dataAdapter1 = new SqlDataAdapter(selectConsumerNameQuery, connectionString))
+                    using (SqlDataAdapter dataAdapter1 = new SqlDataAdapter(selectConsumerPhoneQuery, connectionString))
                     {
                         DataTable table1 = new DataTable();
                         dataAdapter1.Fill(table1);

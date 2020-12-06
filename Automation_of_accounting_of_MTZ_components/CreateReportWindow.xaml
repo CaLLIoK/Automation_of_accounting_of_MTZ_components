@@ -1,0 +1,19 @@
+﻿<Window x:Class="Automation_of_accounting_of_MTZ_components.CreateReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Automation_of_accounting_of_MTZ_components"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Width="630" Height="360" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid>
+        <Label Content="Create report" FontSize="30" FontWeight="Bold" FontFamily="Helvetica" Margin="20"/>
+        <Label Content="To create a report, click on the corresponding button" FontSize="20" FontWeight="Light" FontFamily="Helvetica" Margin="20 65 0 0"/>
+        <Button x:Name="CloseButton" Style="{StaticResource MaterialDesignFlatButton}" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" ToolTip="MaterialDesignFlatButton">Close</Button>
+        <Button x:Name="PartsMovementButton" Width="320" Height="40" VerticalAlignment="Center" Content="CREATE PARTS MOVEMENT REPORT" Margin="0 0 0 80" Click="PartsMovementButton_Click"></Button>
+        <Button x:Name="SpecificPartMovementButton" Width="320" Height="40" VerticalAlignment="Center" Content="CREATE SPECIFIC PART MOVEMENT REPORT" Margin="0 80 0 0" Click="SpecificPartMovementButton_Click"></Button>
+        <Button x:Name="ConsignmentNoteButton" Width="320" Height="40" VerticalAlignment="Center" Content="CREATE CONSIGNMENT NOTE REPORT" Margin="0 240 0 0"></Button>
+    </Grid>
+</Window>

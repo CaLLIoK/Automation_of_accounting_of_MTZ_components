@@ -4,28 +4,34 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Automation_of_accounting_of_MTZ_components
 {
     /// <summary>
     /// Логика взаимодействия для AddToConsignmentNoteWindow.xaml
     /// </summary>
+   
+    public class NewComponet
+    {
+        public string TractorBrandName { get; set; }
+        public string ComponentName { get; set; }
+        public double ComponetWeight { get; set; }
+        public int Count { get; set; }
+    }
+
     public partial class AddToConsignmentNoteWindow : Window
     {
         SqlConnection connectionString = new SqlConnection(@"Data Source=(local)\SQLEXPRESS; Initial Catalog=Automation_of_accounting_of_MTZ_components; Integrated Security=True");
         string existingEntry = string.Empty;
         string[] componentsInfo;
+        string componentName = string.Empty;
+        string tractorBrandName = string.Empty;
+        double componetWeight = 0;
+        int componentCount = 0;
 
         public AddToConsignmentNoteWindow()
         {
@@ -110,17 +116,30 @@ namespace Automation_of_accounting_of_MTZ_components
             }
             connectionString.Close();
 
-            for (int i = 0; i < basket.Items.Count; i++)
+            for (int i = 0; i < basketGrid.Items.Count; i++)
             {
-                existingEntry = basket.Items[i].ToString();
-                existingEntry = existingEntry.Replace("\t-\t", "*");
-                componentsInfo = existingEntry.Split('*');
-                if (componentsInfo[0] == componentInfo["tractorBrandName"].ToString() && componentsInfo[1] == componentInfo["componentName"].ToString() && double.Parse(componentsInfo[2]) == double.Parse(componentInfo["componentWeight"].ToString()))
+                NewComponet component = (NewComponet)basketGrid.Items[i];
+                componentName = component.ComponentName;
+                tractorBrandName = component.TractorBrandName;
+                componetWeight = component.ComponetWeight;
+                if (tractorBrandName == componentInfo["tractorBrandName"].ToString() && componentName == componentInfo["componentName"].ToString() && componetWeight == double.Parse(componentInfo["componentWeight"].ToString()))
                 {
                     MessageBox.Show("This item has already been added to the basket.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
             }
+
+            //for (int i = 0; i < basket.Items.Count; i++)
+            //{
+            //    existingEntry = basket.Items[i].ToString();
+            //    existingEntry = existingEntry.Replace("\t-\t", "*");
+            //    componentsInfo = existingEntry.Split('*');
+            //    if (componentsInfo[0] == componentInfo["tractorBrandName"].ToString() && componentsInfo[1] == componentInfo["componentName"].ToString() && double.Parse(componentsInfo[2]) == double.Parse(componentInfo["componentWeight"].ToString()))
+            //    {
+            //        MessageBox.Show("This item has already been added to the basket.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //        return;
+            //    }
+            //}
             File.WriteAllText(@"ComponentsCount.txt", string.Empty);
             SelectCountOfComponentsWindow selectCountOfComponentsWindow = new SelectCountOfComponentsWindow();
             selectCountOfComponentsWindow.ShowDialog();
@@ -145,22 +164,36 @@ namespace Automation_of_accounting_of_MTZ_components
                     return;
                 }
             }
-            string newComponent = componentInfo["tractorBrandName"].ToString() + "\t-\t" + componentInfo["componentName"].ToString() + "\t-\t" + componentInfo["componentWeight"].ToString() + "\t-\t" + count;
-            basket.Items.Add(newComponent);
+            componentName = componentInfo["componentName"].ToString();
+            tractorBrandName = componentInfo["tractorBrandName"].ToString();
+            componetWeight = double.Parse(componentInfo["componentWeight"].ToString());
+            var newItem = new NewComponet { TractorBrandName = tractorBrandName, ComponentName = componentName, ComponetWeight = componetWeight, Count = count };
+            basketGrid.Items.Add(newItem);
+            //string newComponent = componentInfo["tractorBrandName"].ToString() + "\t-\t" + componentInfo["componentName"].ToString() + "\t-\t" + componentInfo["componentWeight"].ToString() + "\t-\t" + count;
+            //basket.Items.Add(newComponent);
             componentsGrid.SelectedIndex = -1;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (basket.SelectedIndex == -1)
+            if (basketGrid.SelectedIndex == -1)
             {
                 MessageBox.Show("You haven't selected a component for deleting to basket.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             else
             {
-                basket.Items.RemoveAt(basket.SelectedIndex);
+                basketGrid.Items.RemoveAt(0);
             }
+            //if (basket.SelectedIndex == -1)
+            //{
+            //    MessageBox.Show("You haven't selected a component for deleting to basket.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    return;
+            //}
+            //else
+            //{
+            //    basket.Items.RemoveAt(basket.SelectedIndex);
+            //}
         }
 
         private string CheckCongignmentNoteNumber(string str, string notEntered, string invalidSymbols, string allowedLenght, string notAvailable)
@@ -189,6 +222,89 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void FillButton_Click(object sender, RoutedEventArgs e)
         {
+            //    if (basket.Items.Count == 0)
+            //    {
+            //        MessageBox.Show("You haven't added any details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //        return;
+            //    }
+            //    double cost = 0;
+            //    double generalSum = 0;
+
+            //    StreamReader file = new StreamReader("UserLogin.txt");
+            //    string employeeLogin = file.ReadLine();
+            //    file.Close();
+
+            //    int componentCode = 0;
+            //    int currentCount = 0;
+            //    for (int i = 0; i < basket.Items.Count; i++)
+            //    {
+            //        existingEntry = basket.Items[i].ToString();
+            //        existingEntry = existingEntry.Replace("\t-\t", "*");
+            //        componentsInfo = existingEntry.Split('*');
+            //        SqlCommand command = new SqlCommand("SELECT componentCode, componentCost, componentCount FROM Component JOIN TractorBrand ON Component.tractorBrandCode = TractorBrand.tractorBrandCode WHERE [componentName] = @name " +
+            //                                            "AND [tractorBrandName] = @tractorName AND [componentWeight] = @weight", connectionString);
+            //        command.Parameters.AddWithValue("@name", componentsInfo[1]);
+            //        command.Parameters.AddWithValue("@tractorName", componentsInfo[0]);
+            //        command.Parameters.AddWithValue("@weight", double.Parse(componentsInfo[2]));
+            //        connectionString.Open();
+            //        using (SqlDataReader reader = command.ExecuteReader())
+            //        {
+            //            if (reader.Read())
+            //            {
+            //                cost = double.Parse(reader["componentCost"].ToString());
+            //                componentCode = Convert.ToInt32(reader["componentCode"]);
+            //                currentCount = Convert.ToInt32(reader["componentCount"]);
+            //                connectionString.Close();
+            //            }
+            //            generalSum = double.Parse(componentsInfo[3]) * cost;
+            //            connectionString.Open();
+            //            SqlCommand cmd = new SqlCommand();
+            //            if (currentCount == int.Parse(componentsInfo[3]))
+            //            {
+            //                cmd = new SqlCommand();
+            //                cmd.CommandType = CommandType.Text;
+            //                cmd.CommandText = "UPDATE Component SET [componentCount] = [componentCount] - @count, [availabilityStatusCode] = (SELECT availabilityStatusCode FROM AvailabilityStatus WHERE availabilityStatusName = @status) WHERE [componentCode] = @code";
+            //                cmd.Parameters.Add("@count", SqlDbType.Int).Value = int.Parse(componentsInfo[3]);
+            //                cmd.Parameters.Add("@code", SqlDbType.Int).Value = componentCode;
+            //                cmd.Parameters.Add("@status", SqlDbType.VarChar).Value = "Нет в наличии";
+            //                cmd.Connection = connectionString;
+            //                cmd.ExecuteNonQuery();
+            //            }
+            //            else
+            //            {
+            //                cmd = new SqlCommand();
+            //                cmd.CommandType = CommandType.Text;
+            //                cmd.CommandText = "UPDATE Component SET [componentCount] = [componentCount] - @count, [availabilityStatusCode] = (SELECT availabilityStatusCode FROM AvailabilityStatus WHERE availabilityStatusName = @status) WHERE [componentCode] = @code";
+            //                cmd.Parameters.Add("@count", SqlDbType.Int).Value = int.Parse(componentsInfo[3]);
+            //                cmd.Parameters.Add("@code", SqlDbType.Int).Value = componentCode;
+            //                cmd.Parameters.Add("@status", SqlDbType.VarChar).Value = "Есть в наличии";
+            //                cmd.Connection = connectionString;
+            //                cmd.ExecuteNonQuery();
+            //            }
+            //            cmd = new SqlCommand();
+            //            cmd.CommandType = CommandType.Text;
+            //            cmd.CommandText = "INSERT ConsignmentNote (consignmentNoteNumber, componntCount, issueDate, generalSum, componentCode, consumerCode, employeeCode) VALUES (@number, @count, @date, @sum, @componentCode, (SELECT consumerCode FROM Consumer WHERE consumerName = @consumerName), (SELECT employeeCode FROM Employee WHERE employeeLogin = @login))";
+            //            cmd.Parameters.Add("@number", SqlDbType.VarChar).Value = numberField.Text;
+            //            cmd.Parameters.Add("@count", SqlDbType.Int).Value = int.Parse(componentsInfo[3]);
+            //            cmd.Parameters.Add("@date", SqlDbType.DateTime).Value = DateTime.Now.Date;
+            //            cmd.Parameters.Add("@sum", SqlDbType.Float).Value = generalSum;
+            //            cmd.Parameters.Add("@componentCode", SqlDbType.Int).Value = componentCode;
+            //            cmd.Parameters.Add("@consumerName", SqlDbType.VarChar).Value = consumerField.Text;
+            //            cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = employeeLogin;
+            //            cmd.Connection = connectionString;
+            //            cmd.ExecuteNonQuery();
+            //            connectionString.Close();
+            //        }
+            //        connectionString.Close();
+            //    }
+            //    MessageBox.Show("Consignment note has been successfully generated.", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
+            //    consumerField.SelectedIndex = -1;
+            //    numberField.Clear();
+            //    basket.Items.Clear();
+            //    connectionString.Open();
+            //    FillDataGrid();
+            //    connectionString.Close();
+
             if (numberField.Text != CheckCongignmentNoteNumber(numberField.Text, "Consignment note number not entered.", "Consignment note number contains invalid symbols.", "The consignment note number should look like this: #####-###. \nExample: 12345-123.", "This consignment note already exists, please enter another one.")) //checking consignment note number name for correctness
             {
                 MessageBox.Show(CheckCongignmentNoteNumber(numberField.Text, "Consignment note number not entered.", "Consignment note number contains invalid symbols.", "The consignment note number should look like this: #####-###. \nExample: 12345-123.", "This consignment note already exists, please enter another one."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -201,9 +317,9 @@ namespace Automation_of_accounting_of_MTZ_components
                 return;
             }
 
-            if (basket.Items.Count == 0)
+            if (basketGrid.Items.Count == 0)
             {
-                MessageBox.Show("You haven't added any details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("You haven't added any components.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             double cost = 0;
@@ -215,16 +331,18 @@ namespace Automation_of_accounting_of_MTZ_components
 
             int componentCode = 0;
             int currentCount = 0;
-            for (int i = 0; i < basket.Items.Count; i++)
+            for (int i = 0; i < basketGrid.Items.Count; i++)
             {
-                existingEntry = basket.Items[i].ToString();
-                existingEntry = existingEntry.Replace("\t-\t", "*");
-                componentsInfo = existingEntry.Split('*');
+                NewComponet component = (NewComponet)basketGrid.Items[i];
+                componentName = component.ComponentName;
+                tractorBrandName = component.TractorBrandName;
+                componetWeight = component.ComponetWeight;
+                componentCount = component.Count;
                 SqlCommand command = new SqlCommand("SELECT componentCode, componentCost, componentCount FROM Component JOIN TractorBrand ON Component.tractorBrandCode = TractorBrand.tractorBrandCode WHERE [componentName] = @name " +
                                                     "AND [tractorBrandName] = @tractorName AND [componentWeight] = @weight", connectionString);
-                command.Parameters.AddWithValue("@name", componentsInfo[1]);
-                command.Parameters.AddWithValue("@tractorName", componentsInfo[0]);
-                command.Parameters.AddWithValue("@weight", double.Parse(componentsInfo[2]));
+                command.Parameters.AddWithValue("@name", componentName);
+                command.Parameters.AddWithValue("@tractorName", tractorBrandName);
+                command.Parameters.AddWithValue("@weight", componetWeight);
                 connectionString.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -235,15 +353,15 @@ namespace Automation_of_accounting_of_MTZ_components
                         currentCount = Convert.ToInt32(reader["componentCount"]);
                         connectionString.Close();
                     }
-                    generalSum = double.Parse(componentsInfo[3]) * cost;
+                    generalSum = componentCount * cost;
                     connectionString.Open();
                     SqlCommand cmd = new SqlCommand();
-                    if (currentCount == int.Parse(componentsInfo[3]))
+                    if (currentCount == componentCount)
                     {
                         cmd = new SqlCommand();
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "UPDATE Component SET [componentCount] = [componentCount] - @count, [availabilityStatusCode] = (SELECT availabilityStatusCode FROM AvailabilityStatus WHERE availabilityStatusName = @status) WHERE [componentCode] = @code";
-                        cmd.Parameters.Add("@count", SqlDbType.Int).Value = int.Parse(componentsInfo[3]);
+                        cmd.Parameters.Add("@count", SqlDbType.Int).Value = componentCount;
                         cmd.Parameters.Add("@code", SqlDbType.Int).Value = componentCode;
                         cmd.Parameters.Add("@status", SqlDbType.VarChar).Value = "Нет в наличии";
                         cmd.Connection = connectionString;
@@ -254,7 +372,7 @@ namespace Automation_of_accounting_of_MTZ_components
                         cmd = new SqlCommand();
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "UPDATE Component SET [componentCount] = [componentCount] - @count, [availabilityStatusCode] = (SELECT availabilityStatusCode FROM AvailabilityStatus WHERE availabilityStatusName = @status) WHERE [componentCode] = @code";
-                        cmd.Parameters.Add("@count", SqlDbType.Int).Value = int.Parse(componentsInfo[3]);
+                        cmd.Parameters.Add("@count", SqlDbType.Int).Value = componentCount;
                         cmd.Parameters.Add("@code", SqlDbType.Int).Value = componentCode;
                         cmd.Parameters.Add("@status", SqlDbType.VarChar).Value = "Есть в наличии";
                         cmd.Connection = connectionString;
@@ -262,9 +380,9 @@ namespace Automation_of_accounting_of_MTZ_components
                     }
                     cmd = new SqlCommand();
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "INSERT ConsignmentNote (consignmentNoteNumber, componentCount, issueDate, generalSum, componentCode, consumerCode, employeeCode) VALUES (@number, @count, @date, @sum, @componentCode, (SELECT consumerCode FROM Consumer WHERE consumerName = @consumerName), (SELECT employeeCode FROM Employee WHERE employeeLogin = @login))";
+                    cmd.CommandText = "INSERT ConsignmentNote (consignmentNoteNumber, componntCount, issueDate, generalSum, componentCode, consumerCode, employeeCode) VALUES (@number, @count, @date, @sum, @componentCode, (SELECT consumerCode FROM Consumer WHERE consumerName = @consumerName), (SELECT employeeCode FROM Employee WHERE employeeLogin = @login))";
                     cmd.Parameters.Add("@number", SqlDbType.VarChar).Value = numberField.Text;
-                    cmd.Parameters.Add("@count", SqlDbType.Int).Value = int.Parse(componentsInfo[3]);
+                    cmd.Parameters.Add("@count", SqlDbType.Int).Value = componentCount;
                     cmd.Parameters.Add("@date", SqlDbType.DateTime).Value = DateTime.Now.Date;
                     cmd.Parameters.Add("@sum", SqlDbType.Float).Value = generalSum;
                     cmd.Parameters.Add("@componentCode", SqlDbType.Int).Value = componentCode;
@@ -279,7 +397,10 @@ namespace Automation_of_accounting_of_MTZ_components
             MessageBox.Show("Consignment note has been successfully generated.", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
             consumerField.SelectedIndex = -1;
             numberField.Clear();
-            basket.Items.Clear();
+            basketGrid.Items.Clear();
+            connectionString.Open();
+            FillDataGrid();
+            connectionString.Close();
         }
     }
 }
