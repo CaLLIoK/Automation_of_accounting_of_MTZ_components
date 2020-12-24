@@ -86,6 +86,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -135,6 +136,9 @@
     </Compile>
     <Compile Include="ComponentsInfo.xaml.cs">
       <DependentUpon>ComponentsInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConsignmentNoteReportWindow.xaml.cs">
+      <DependentUpon>ConsignmentNoteReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreateReportWindow.xaml.cs">
       <DependentUpon>CreateReportWindow.xaml</DependentUpon>
@@ -187,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ComponentsInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsignmentNoteReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -252,6 +260,7 @@
     <None Include="Automation_of_accounting_of_MTZ_componentsDataSet.xss">
       <DependentUpon>Automation_of_accounting_of_MTZ_componentsDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

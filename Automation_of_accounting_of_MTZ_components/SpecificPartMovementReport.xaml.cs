@@ -93,8 +93,9 @@ namespace Automation_of_accounting_of_MTZ_components
                 excelsheets = excelappworkbook.Worksheets;
                 excelworksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelsheets.get_Item(1);
                 Random rnd = new Random();
+                int reportNumber = rnd.Next(10000);
                 excelcells = excelworksheet.get_Range("D3");
-                excelcells.Value = rnd.Next(10000);
+                excelcells.Value = reportNumber;
                 excelcells = excelworksheet.get_Range("B6");
                 excelcells.Value = "(" + componentInfo["tractorBrandName"].ToString() + ") " + componentInfo["componentName"].ToString();
                 excelcells = excelworksheet.get_Range("B7");
@@ -144,18 +145,18 @@ namespace Automation_of_accounting_of_MTZ_components
                     }
                     else
                     {
-                        MessageBox.Show("Nothing was found for the specified date range.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("During this specified date range, no arrived parts were found.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 connectionString.Close();
                 excelworksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelsheets.get_Item(2);
                 excelcells = excelworksheet.get_Range("D2");
-                excelcells.Value = rnd.Next(10000);
+                excelcells.Value = reportNumber;
                 excelcells = excelworksheet.get_Range("B5");
                 excelcells.Value = "(" + componentInfo["tractorBrandName"].ToString() + ") " + componentInfo["componentName"].ToString();
                 excelcells = excelworksheet.get_Range("B6");
                 excelcells.Value = "единица детали с весом " + componentInfo["componentWeight"].ToString() + " кг";
-                excelcells = excelworksheet.get_Range("F4");
+                excelcells = excelworksheet.get_Range("G4");
                 excelcells.Value = DateTime.Now.ToShortDateString();
 
                 SqlCommand command1 = new SqlCommand("SELECT componentName, issueDate, componentCost, componntCount, generalSum, componentCount FROM ConsignmentNote " +
@@ -201,7 +202,7 @@ namespace Automation_of_accounting_of_MTZ_components
                     }
                     else
                     {
-                        MessageBox.Show("Nothing was found for the specified date range.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("No sold parts were found for this specified date range.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 connectionString.Close();

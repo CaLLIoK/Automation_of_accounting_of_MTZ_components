@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace Automation_of_accounting_of_MTZ_components
@@ -49,8 +50,9 @@ namespace Automation_of_accounting_of_MTZ_components
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
             File.WriteAllText(@"AutorizationStatus.txt", string.Empty);
+            File.WriteAllText(@"UserLogin.txt", string.Empty);
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -73,6 +75,7 @@ namespace Automation_of_accounting_of_MTZ_components
         private void ChangeAccButton_Click(object sender, RoutedEventArgs e)
         {
             File.WriteAllText(@"AutorizationStatus.txt", string.Empty);
+            File.WriteAllText(@"UserLogin.txt", string.Empty);
             AutorizationWindow autorizationWindow = new AutorizationWindow();
             autorizationWindow.Show();
             this.Close();
@@ -81,9 +84,6 @@ namespace Automation_of_accounting_of_MTZ_components
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             AccountSettings accountSettings = new AccountSettings();
-            //accountSettings.Owner = this;
-            //accountSettings.Topmost = true;
-            //accountSettings.ShowDialog();
             accountSettings.Show();
             this.Close();
         }
@@ -91,9 +91,6 @@ namespace Automation_of_accounting_of_MTZ_components
         private void ComponentsInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ComponentsInfo componentsInfo = new ComponentsInfo();
-            //componentsInfo.Owner = this;
-            //componentsInfo.Topmost = true;
-            //componentsInfo.ShowDialog();
             componentsInfo.Show();
             this.Close();
         }
@@ -101,9 +98,6 @@ namespace Automation_of_accounting_of_MTZ_components
         private void AddComponents_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             AddComponentsWindow addComponents = new AddComponentsWindow();
-            //addComponents.Owner = this;
-            //addComponents.Topmost = true;
-            //addComponents.ShowDialog();
             addComponents.Show();
             this.Close();
         }
@@ -117,9 +111,6 @@ namespace Automation_of_accounting_of_MTZ_components
             registrationWindow.Account.Visibility = Visibility.Hidden;
             registrationWindow.SingInButton.Visibility = Visibility.Hidden;
             registrationWindow.successfulRegistration = "Adding employee is successful!";
-            //registrationWindow.Owner = this;
-            //registrationWindow.Topmost = true;
-            //registrationWindow.ShowDialog();
             registrationWindow.Show();
             this.Close();
         }
@@ -127,9 +118,6 @@ namespace Automation_of_accounting_of_MTZ_components
         private void ChangeComponentsInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ChangeComponentsInfoWindow changeComponentsInfoWindow = new ChangeComponentsInfoWindow();
-            //changeComponentsInfoWindow.Owner = this;
-            //changeComponentsInfoWindow.Topmost = true;
-            //changeComponentsInfoWindow.ShowDialog();
             changeComponentsInfoWindow.Show();
             this.Close();
         }
@@ -137,9 +125,6 @@ namespace Automation_of_accounting_of_MTZ_components
         private void ChangeEmployeesInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ChangeEmployeesInfoWindow changeEmployeesInfoWindow = new ChangeEmployeesInfoWindow();
-            //changeEmployeesInfoWindow.Owner = this;
-            //changeEmployeesInfoWindow.Topmost = true;
-            //changeEmployeesInfoWindow.ShowDialog();
             changeEmployeesInfoWindow.Show();
             this.Close();
         }
@@ -147,9 +132,6 @@ namespace Automation_of_accounting_of_MTZ_components
         private void CreateConsignmentNote_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             AddToConsignmentNoteWindow addToConsignmentNoteWindow = new AddToConsignmentNoteWindow();
-            //addToConsignmentNoteWindow.Owner = this;
-            //addToConsignmentNoteWindow.Topmost = true;
-            //addToConsignmentNoteWindow.ShowDialog();
             addToConsignmentNoteWindow.Show();
             this.Close();
         }
@@ -157,9 +139,6 @@ namespace Automation_of_accounting_of_MTZ_components
         private void AddConsumers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             AddConsumersWindow addConsumersWindow = new AddConsumersWindow();
-            //addConsumersWindow.Owner = this;
-            //addConsumersWindow.Topmost = true;
-            //addConsumersWindow.ShowDialog();
             addConsumersWindow.Show();
             this.Close();
         }
@@ -167,9 +146,6 @@ namespace Automation_of_accounting_of_MTZ_components
         private void ChangeConsumersInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ChangeConsumersInfoWindow changeConsumersInfoWindow = new ChangeConsumersInfoWindow();
-            //changeConsumersInfoWindow.Owner = this;
-            //changeConsumersInfoWindow.Topmost = true;
-            //changeConsumersInfoWindow.ShowDialog();
             changeConsumersInfoWindow.Show();
             this.Close();
         }
@@ -179,6 +155,31 @@ namespace Automation_of_accounting_of_MTZ_components
             CreateReportWindow createReportWindow = new CreateReportWindow();
             createReportWindow.Show();
             this.Close();
+        }
+
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            string post = string.Empty;
+            string selectEmployeePostQuery = "SELECT postName FROM Employee JOIN Post ON Employee.postCode = Post.postCode WHERE employeeLogin = '" + login.Text + "'";
+            using (SqlDataAdapter dataAdapter = new SqlDataAdapter(selectEmployeePostQuery, myConnectionString))
+            {
+                DataTable table = new DataTable();
+                dataAdapter.Fill(table);
+                if (table.Rows.Count > 0)
+                {
+                    post = table.Rows[0]["postName"].ToString();
+                }
+            }
+            if (post == "Администратор")
+            {
+                HelpNavigator navigator = HelpNavigator.Topic;
+                Help.ShowHelp(null, "help.chm", navigator, "rukovodstvo_administratora.htm");
+            }
+            else
+            {
+                HelpNavigator navigator = HelpNavigator.Topic;
+                Help.ShowHelp(null, "help.chm", navigator, "rukovodstvo_sotrudnika.htm");
+            }
         }
     }
 }

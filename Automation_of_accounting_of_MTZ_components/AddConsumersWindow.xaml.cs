@@ -54,9 +54,9 @@ namespace Automation_of_accounting_of_MTZ_components
                 return;
             }
 
-            if (phoneField.Text != ConsumersChecks.CheckConsumerPhone(phoneField.Text, "Consumer phone not entered.", "Consumer phone contains invalid symbols.", "The phone number should look like this: +375(25|29|33|44)###-##-##."))
+            if (phoneField.Text != ConsumersChecks.CheckConsumerPhone(phoneField.Text, "Consumer phone not entered.", "Consumer phone contains invalid symbols.", "The phone number should look like this: +375(17|25|29|33|44)###-##-##."))
             {
-                MessageBox.Show(ConsumersChecks.CheckConsumerPhone(phoneField.Text, "Consumer phone not entered.", "Consumer phone contains invalid symbols.", "The phone number should look like this: +375(25|29|33|44)###-##-##."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ConsumersChecks.CheckConsumerPhone(phoneField.Text, "Consumer phone not entered.", "Consumer phone contains invalid symbols.", "The phone number should look like this: +375(17|25|29|33|44)###-##-##."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -132,9 +132,9 @@ namespace Automation_of_accounting_of_MTZ_components
                 return;
             }
 
-            if (phoneField.Text != ConsumersChecks.CheckConsumerPhone(phoneField.Text, "Consumer phone not entered.", "Consumer phone contains invalid symbols.", "The phone number should look like this: +375(25|29|33|44)###-##-##."))
+            if (phoneField.Text != ConsumersChecks.CheckConsumerPhone(phoneField.Text, "Consumer phone not entered.", "Consumer phone contains invalid symbols.", "The phone number should look like this: +375(17|25|29|33|44)###-##-##."))
             {
-                MessageBox.Show(ConsumersChecks.CheckConsumerPhone(phoneField.Text, "Consumer phone not entered.", "Consumer phone contains invalid symbols.", "The phone number should look like this: +375(25|29|33|44)###-##-##."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ConsumersChecks.CheckConsumerPhone(phoneField.Text, "Consumer phone not entered.", "Consumer phone contains invalid symbols.", "The phone number should look like this: +375(17|25|29|33|44)###-##-##."), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

@@ -39,7 +39,7 @@
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
                         <Button Content="Settings" FontFamily="Helvetica" FontWeight="Light" FontSize="16" Click="SettingsButton_Click"/>
-                        <Button Content="Help" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
+                        <Button x:Name="HelpButton" Content="Help" FontFamily="Helvetica" FontWeight="Light" FontSize="16" Click="HelpButton_Click"/>
                         <Button x:Name="ChangeAccButton" Content="Change account" Click="ChangeAccButton_Click" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>
                         <Separator/>
                         <Button x:Name="ButtonPopUpLogout" Content="Logout" Click="ButtonPopUpLogout_Click" FontFamily="Helvetica" FontWeight="Light" FontSize="16"/>

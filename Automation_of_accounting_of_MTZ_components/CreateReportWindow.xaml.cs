@@ -38,5 +38,12 @@ namespace Automation_of_accounting_of_MTZ_components
             specificPartMovementReport.Show();
             this.Close();
         }
+
+        private void ConsignmentNoteButton_Click(object sender, RoutedEventArgs e)
+        {
+            ConsignmentNoteReportWindow consignmentNoteReportWindow = new ConsignmentNoteReportWindow();
+            consignmentNoteReportWindow.Show();
+            this.Close();
+        }
     }
 }

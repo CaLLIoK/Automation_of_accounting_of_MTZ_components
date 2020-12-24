@@ -75,6 +75,7 @@ namespace Automation_of_accounting_of_MTZ_components
             int i = 14;
             try
             {
+                string adress = "Минский тракторный завод (МТЗ), Республика Беларусь, г. Минск ул. Долгобродская, д. 29, тел. +375(17)246-60-09";
                 if (Arrival.IsChecked == true)
                 {
                     excelappworkbooks = excelapp.Workbooks;
@@ -82,19 +83,19 @@ namespace Automation_of_accounting_of_MTZ_components
                     excelsheets = excelappworkbook.Worksheets;
                     excelworksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelsheets.get_Item(1);
                     Random rnd = new Random();
-                    excelcells = excelworksheet.get_Range("C3");
+                    excelcells = excelworksheet.get_Range("D3");
                     excelcells.Value = rnd.Next(10000);
-                    excelcells = excelworksheet.get_Range("B6");
+                    excelcells = excelworksheet.get_Range("C6");
                     excelcells.Value = FirstDate.SelectedDate.Value.Date;
-                    excelcells = excelworksheet.get_Range("D6");
+                    excelcells = excelworksheet.get_Range("E6");
                     excelcells.Value = LastDate.SelectedDate.Value.Date;
                     excelcells = excelworksheet.get_Range("B8");
-                    excelcells.Value = "Минский тракторный завод (МТЗ)";
+                    excelcells.Value = adress;
                     excelcells = excelworksheet.get_Range("B9");
-                    excelcells.Value = "Минский тракторный завод (МТЗ)";
-                    excelcells = excelworksheet.get_Range("F7");
+                    excelcells.Value = adress;
+                    excelcells = excelworksheet.get_Range("G7");
                     excelcells.Value = DateTime.Now.ToShortDateString();
-                    string infoQuery = "SELECT componentName, componentCost, componentsCount FROM Arrival JOIN Component ON Arrival.componentCode = Component.componentCode " +
+                    string infoQuery = "SELECT componentName, arrivalDate, componentCost, componentsCount FROM Arrival JOIN Component ON Arrival.componentCode = Component.componentCode " +
                                        "WHERE arrivalDate BETWEEN '" + FirstDate.SelectedDate.Value.Date + "' AND '" + LastDate.SelectedDate.Value.Date + "'";
                     using (SqlDataAdapter dataAdapter = new SqlDataAdapter(infoQuery, connectionString))
                     {
@@ -106,12 +107,17 @@ namespace Automation_of_accounting_of_MTZ_components
                         {
                             for (int rows = 0; rows < table.Rows.Count; ++rows)
                             {
-                                for (int j = 1; j < 6; j++)
+                                for (int j = 1; j < 7; j++)
                                 {
                                     excelcells = (Microsoft.Office.Interop.Excel.Range)excelworksheet.Cells[i, j];
                                     excelcells.Borders.ColorIndex = 0;
                                     excelcells.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble;
                                     if (j == 2)
+                                    {
+                                        excelcells.Value = DateTime.Parse(table.Rows[rows]["arrivalDate"].ToString());
+                                        ++k;
+                                    }
+                                    else if (j == 3)
                                     {
                                         excelcells.Value2 = ed.ToString();
                                     }
@@ -131,7 +137,7 @@ namespace Automation_of_accounting_of_MTZ_components
                         }
                         else
                         {
-                            MessageBox.Show("Nothing was found for the specified date range.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("During this specified date range, no arrived parts were found.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                     }
                     path += @"\ArrivalReport.xls";
@@ -144,101 +150,27 @@ namespace Automation_of_accounting_of_MTZ_components
                     FirstDate.SelectedDates.Clear();
                     LastDate.SelectedDates.Clear();
                 }
-                //else if (ArrivalAndSelling.IsChecked == true)
-                //{
-                //    excelappworkbooks = excelapp.Workbooks;
-                //    excelappworkbook = excelapp.Workbooks.Open(System.IO.Path.GetFullPath(@"ProductMovementReportTemplate.xls"));
-                //    excelsheets = excelappworkbook.Worksheets;
-                //    excelworksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelsheets.get_Item(1);
-                //    Random rnd = new Random();
-                //    excelcells = excelworksheet.get_Range("F3");
-                //    excelcells.Value = rnd.Next(10000);
-                //    excelcells = excelworksheet.get_Range("E6");
-                //    excelcells.Value = FirstDate.SelectedDate.Value.Date;
-                //    excelcells = excelworksheet.get_Range("G6");
-                //    excelcells.Value = LastDate.SelectedDate.Value.Date;
-                //    excelcells = excelworksheet.get_Range("B8");
-                //    excelcells.Value = "Минский тракторный завод (МТЗ)";
-                //    excelcells = excelworksheet.get_Range("B9");
-                //    excelcells.Value = "Минский тракторный завод (МТЗ)";
-                //    excelcells = excelworksheet.get_Range("I7");
-                //    excelcells.Value = DateTime.Now.ToShortDateString();
-                //    string infoQuery = "SELECT componentName, componentCost, componentsCount, componntCount, generalSum, componentCount FROM Component " +
-                //                       "JOIN Arrival ON Component.componentCode = Arrival.componentCode " +
-                //                       "JOIN ConsignmentNote ON Component.componentCode = ConsignmentNote.componentCode " +
-                //                       "WHERE arrivalDate BETWEEN '" + FirstDate.SelectedDate.Value.Date + "' AND '" + LastDate.SelectedDate.Value.Date + "' AND issueDate BETWEEN '" + FirstDate.SelectedDate.Value.Date + "' AND '" + LastDate.SelectedDate.Value.Date + "'";
-                //    using (SqlDataAdapter dataAdapter = new SqlDataAdapter(infoQuery, connectionString))
-                //    {
-                //        int k = 0;
-                //        string ed = "шт.";
-                //        DataTable table = new DataTable();
-                //        dataAdapter.Fill(table);
-                //        if (table.Rows.Count > 0)
-                //        {
-                //            for (int rows = 0; rows < table.Rows.Count; ++rows)
-                //            {
-                //                for (int j = 1; j < 10; j++)
-                //                {
-                //                    excelcells = (Microsoft.Office.Interop.Excel.Range)excelworksheet.Cells[i, j];
-                //                    excelcells.Borders.ColorIndex = 0;
-                //                    excelcells.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble;
-                //                    if (j == 2)
-                //                    {
-                //                        excelcells.Value2 = ed.ToString();
-                //                    }
-                //                    else if (j == 5)
-                //                    {
-                //                        excelcells.Value = double.Parse(table.Rows[rows]["componentCost"].ToString()) * int.Parse(table.Rows[rows]["componentsCount"].ToString());
-                //                    }
-                //                    else if (j == 9)
-                //                    {
-                //                        excelcells.Value = double.Parse(table.Rows[rows]["componentCost"].ToString()) * int.Parse(table.Rows[rows]["componentCount"].ToString());
-                //                    }
-                //                    else
-                //                    {
-                //                        excelcells.Value = table.Rows[rows][k].ToString();
-                //                        ++k;
-                //                    }
-                //                }
-                //                ++i;
-                //                k = 0;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show("Nothing was found for the specified date range.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                //        }
-                //    }
-                //    path += @"\MovementReport.xls";
-                //    excelappworkbooks = excelapp.Workbooks;
-                //    excelappworkbook = excelappworkbooks[1];
-                //    excelappworkbook.SaveAs(path);
-                //    MessageBox.Show("The report has been successfully created.", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
-                //    Arrival.IsChecked = false;
-                //    ArrivalAndSelling.IsChecked = false;
-                //    FirstDate.SelectedDates.Clear();
-                //    LastDate.SelectedDates.Clear();
-                //}
                 else if (ArrivalAndSelling.IsChecked == true)
                 {
                     excelappworkbooks = excelapp.Workbooks;
-                    excelappworkbook = excelapp.Workbooks.Open(System.IO.Path.GetFullPath(@"ProductMovementReportTemplate1.xls"));
+                    excelappworkbook = excelapp.Workbooks.Open(System.IO.Path.GetFullPath(@"ProductMovementReportTemplate.xls"));
                     excelsheets = excelappworkbook.Worksheets;
                     excelworksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelsheets.get_Item(1);
                     Random rnd = new Random();
-                    excelcells = excelworksheet.get_Range("C3");
-                    excelcells.Value = rnd.Next(10000);
-                    excelcells = excelworksheet.get_Range("B6");
+                    int reportNumber = rnd.Next(10000);
+                    excelcells = excelworksheet.get_Range("D3");
+                    excelcells.Value = reportNumber;
+                    excelcells = excelworksheet.get_Range("C6");
                     excelcells.Value = FirstDate.SelectedDate.Value.Date;
-                    excelcells = excelworksheet.get_Range("D6");
+                    excelcells = excelworksheet.get_Range("E6");
                     excelcells.Value = LastDate.SelectedDate.Value.Date;
                     excelcells = excelworksheet.get_Range("B8");
-                    excelcells.Value = "Минский тракторный завод (МТЗ)";
+                    excelcells.Value = adress;
                     excelcells = excelworksheet.get_Range("B9");
-                    excelcells.Value = "Минский тракторный завод (МТЗ)";
-                    excelcells = excelworksheet.get_Range("F7");
+                    excelcells.Value = adress;
+                    excelcells = excelworksheet.get_Range("G7");
                     excelcells.Value = DateTime.Now.ToShortDateString();
-                    string infoQuery = "SELECT componentName, componentCost, componentsCount FROM Arrival " +
+                    string infoQuery = "SELECT componentName, arrivalDate, componentCost, componentsCount FROM Arrival " +
                                        "JOIN Component ON Arrival.componentCode = Component.componentCode " +
                                        "WHERE arrivalDate BETWEEN '" + FirstDate.SelectedDate.Value.Date + "' AND '" + LastDate.SelectedDate.Value.Date + "'";
                     using (SqlDataAdapter dataAdapter = new SqlDataAdapter(infoQuery, connectionString))
@@ -251,16 +183,21 @@ namespace Automation_of_accounting_of_MTZ_components
                         {
                             for (int rows = 0; rows < table.Rows.Count; ++rows)
                             {
-                                for (int j = 1; j < 6; j++)
+                                for (int j = 1; j < 7; j++)
                                 {
                                     excelcells = (Microsoft.Office.Interop.Excel.Range)excelworksheet.Cells[i, j];
                                     excelcells.Borders.ColorIndex = 0;
                                     excelcells.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble;
                                     if (j == 2)
                                     {
+                                        excelcells.Value = DateTime.Parse(table.Rows[rows]["arrivalDate"].ToString());
+                                        ++k;
+                                    }
+                                    else if (j == 3)
+                                    {
                                         excelcells.Value2 = ed.ToString();
                                     }
-                                    else if (j == 5)
+                                    else if (j == 6)
                                     {
                                         excelcells.Value = double.Parse(table.Rows[rows]["componentCost"].ToString()) * int.Parse(table.Rows[rows]["componentsCount"].ToString());
                                     }
@@ -276,23 +213,23 @@ namespace Automation_of_accounting_of_MTZ_components
                         }
                         else
                         {
-                            MessageBox.Show("Nothing was found for the specified date range.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("During this specified date range, no arrived parts were found.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                     }
                     excelworksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelsheets.get_Item(2);
-                    excelcells = excelworksheet.get_Range("D3");
-                    excelcells.Value = rnd.Next(10000);
-                    excelcells = excelworksheet.get_Range("C6");
+                    excelcells = excelworksheet.get_Range("E3");
+                    excelcells.Value = reportNumber;
+                    excelcells = excelworksheet.get_Range("D6");
                     excelcells.Value = FirstDate.SelectedDate.Value.Date;
-                    excelcells = excelworksheet.get_Range("E6");
+                    excelcells = excelworksheet.get_Range("F6");
                     excelcells.Value = LastDate.SelectedDate.Value.Date;
                     excelcells = excelworksheet.get_Range("B8");
-                    excelcells.Value = "Минский тракторный завод (МТЗ)";
+                    excelcells.Value = adress;
                     excelcells = excelworksheet.get_Range("B9");
-                    excelcells.Value = "Минский тракторный завод (МТЗ)";
-                    excelcells = excelworksheet.get_Range("G7");
+                    excelcells.Value = adress;
+                    excelcells = excelworksheet.get_Range("H7");
                     excelcells.Value = DateTime.Now.ToShortDateString();
-                    string info2Query = "SELECT componentName, componentCost, componntCount, generalSum, componentCount FROM ConsignmentNote " +
+                    string info2Query = "SELECT componentName, issueDate, componentCost, componntCount, generalSum, componentCount FROM ConsignmentNote " +
                                        "JOIN Component ON ConsignmentNote.componentCode = Component.componentCode " +
                                        "WHERE issueDate BETWEEN '" + FirstDate.SelectedDate.Value.Date + "' AND '" + LastDate.SelectedDate.Value.Date + "'";
                     i = 14;
@@ -306,16 +243,21 @@ namespace Automation_of_accounting_of_MTZ_components
                         {
                             for (int rows = 0; rows < table.Rows.Count; ++rows)
                             {
-                                for (int j = 1; j < 8; j++)
+                                for (int j = 1; j < 9; j++)
                                 {
                                     excelcells = (Microsoft.Office.Interop.Excel.Range)excelworksheet.Cells[i, j];
                                     excelcells.Borders.ColorIndex = 0;
                                     excelcells.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble;
                                     if (j == 2)
                                     {
+                                        excelcells.Value = DateTime.Parse(table.Rows[rows]["issueDate"].ToString());
+                                        ++k;
+                                    }
+                                    else if (j == 3)
+                                    {
                                         excelcells.Value2 = ed.ToString();
                                     }
-                                    else if (j == 7)
+                                    else if (j == 8)
                                     {
                                         excelcells.Value = double.Parse(table.Rows[rows]["componentCost"].ToString()) * int.Parse(table.Rows[rows]["componentCount"].ToString());
                                     }
@@ -331,7 +273,7 @@ namespace Automation_of_accounting_of_MTZ_components
                         }
                         else
                         {
-                            MessageBox.Show("Nothing was found for the specified date range.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("No sold parts were found for this specified date range.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                     }
                     path += @"\MovementReport.xls";

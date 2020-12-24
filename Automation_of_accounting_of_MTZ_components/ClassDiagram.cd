@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Automation_of_accounting_of_MTZ_components.AccountSettings" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAACBAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AccountSettingsWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.AddComponentsWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAABAAAAAIIAgIIAAAAAAAAAAAADBAAAAAAAAAAAA=</HashCode>
+      <FileName>AddComponentsWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.AddConsumersWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAABAAAAAIAAgAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>AddConsumersWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.NewComponent" Collapsed="true">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAEAAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>AddToConsignmentNoteWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.AddToConsignmentNoteWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAABAAAABIAAwAAABBAABAAAAAACAAAAAAACAAgAA=</HashCode>
+      <FileName>AddToConsignmentNoteWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.AutorizationWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACBAAAAAIAAAAAAAAAAAgAAAAAAAAAACAAAACAAA=</HashCode>
+      <FileName>AutorizationWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.ChangeComponentsInfoWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABABAAAIAAgAAAAAAAAEAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ChangeComponentsInfoWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.ChangeConsumersInfoWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABABAAAIAAgAAAAAAAAEAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ChangeConsumersInfoWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.ChangeEmployeesInfoWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABABAAAIAAgAAAAAAAAEAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ChangeEmployeesInfoWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.ComponentsInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAABAAAAAIAAgIAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ComponentsInfo.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.ConsignmentNoteReportWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABEAAAAIAAgAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsignmentNoteReportWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.CreateReportWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAIAACABAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CreateReportWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACgABAAACQAAQQAAAAAEAAAAAARVQEAABAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.PartsMovementReportWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABEAQAAIAAgAAAEAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>PartsMovementReportWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.RegistrationWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAACBAAAAAIEAAAAAAAAAAgAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RegistrationWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.SelectCountOfComponentsWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABACBAAAAAIAAAAAAAAEAAAAAAAACAAAAAAgAAAAAA=</HashCode>
+      <FileName>SelectCountOfComponentsWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.SpecificPartMovementReport" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABEAAAAIAAgAAAAAAAAAAAAAACAAAAAAAAAAgAA=</HashCode>
+      <FileName>SpecificPartMovementReport.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.Data_validation.ComponentsChecks" Collapsed="true">
+    <Position X="7.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAEAAGAgABAAAAAAAAAAAABAACAAAAA=</HashCode>
+      <FileName>Data_validation\ComponentsChecks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.Data_validation.ConsumersChecks" Collapsed="true">
+    <Position X="4.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAACAAAgAAAA=</HashCode>
+      <FileName>Data_validation\ConsumersChecks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Automation_of_accounting_of_MTZ_components.Data_validation.EmployeeChecks" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAA=</HashCode>
+      <FileName>Data_validation\EmployeeChecks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

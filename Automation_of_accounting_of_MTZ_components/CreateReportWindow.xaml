@@ -14,6 +14,6 @@
         <Button x:Name="CloseButton" Style="{StaticResource MaterialDesignFlatButton}" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" ToolTip="MaterialDesignFlatButton">Close</Button>
         <Button x:Name="PartsMovementButton" Width="320" Height="40" VerticalAlignment="Center" Content="CREATE PARTS MOVEMENT REPORT" Margin="0 0 0 80" Click="PartsMovementButton_Click"></Button>
         <Button x:Name="SpecificPartMovementButton" Width="320" Height="40" VerticalAlignment="Center" Content="CREATE SPECIFIC PART MOVEMENT REPORT" Margin="0 80 0 0" Click="SpecificPartMovementButton_Click"></Button>
-        <Button x:Name="ConsignmentNoteButton" Width="320" Height="40" VerticalAlignment="Center" Content="CREATE CONSIGNMENT NOTE REPORT" Margin="0 240 0 0"></Button>
+        <Button x:Name="ConsignmentNoteButton" Width="320" Height="40" VerticalAlignment="Center" Content="CREATE CONSIGNMENT NOTE REPORT" Margin="0 240 0 0" Click="ConsignmentNoteButton_Click"></Button>
     </Grid>
 </Window>

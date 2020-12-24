@@ -67,7 +67,7 @@ namespace Automation_of_accounting_of_MTZ_components.Data_validation
             {
                 if (str.Length == 17)
                 {
-                    if (!Regex.IsMatch(str.ToString(), @"(\+|)(375|)(\ |)(\(|)(29|25|33|44)\)\d{3}\-\d{2}\-\d{2}")) return invalidSymbols;
+                    if (!Regex.IsMatch(str.ToString(), @"(\+|)(375|)(\ |)(\(|)(17|29|25|33|44)\)\d{3}\-\d{2}\-\d{2}")) return invalidSymbols;
                 }
                 else return allowedLenght;
             }

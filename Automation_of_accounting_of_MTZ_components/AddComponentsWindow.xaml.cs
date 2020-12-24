@@ -276,6 +276,7 @@ namespace Automation_of_accounting_of_MTZ_components
             SqlCommand command = new SqlCommand("SELECT * FROM Component JOIN TractorBrand ON Component.tractorBrandCode = TractorBrand.tractorBrandCode WHERE [componentCode] = @code", connectionString);
             command.Parameters.AddWithValue("@code", componentCode);
             connectionString.Open();
+
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read() && (reader["componentName"].ToString() != componentNameField.Text || reader["tractorBrandName"].ToString() != tractorField.Text || double.Parse(reader["componentWeight"].ToString()) != double.Parse(weightField.Text) || 
@@ -338,6 +339,7 @@ namespace Automation_of_accounting_of_MTZ_components
                                 cmd.ExecuteNonQuery();
                                 connectionString.Close();
                                 MessageBox.Show("Changes saved.", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
+                                desc = string.Empty;
                             }
                         }
                     }
@@ -345,6 +347,7 @@ namespace Automation_of_accounting_of_MTZ_components
                 else
                 {
                     connectionString.Close();
+                    desc = string.Empty;
                     MessageBox.Show("You haven't made any changes.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }

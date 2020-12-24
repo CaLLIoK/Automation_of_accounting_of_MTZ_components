@@ -7,15 +7,6 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Height="250" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" Background="LightGray" MouseLeftButtonDown="Window_MouseLeftButtonDown">
-
-    <Window.Resources>
-        <Style x:Key="ElementStyle" TargetType="TextBlock">
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-    </Window.Resources>
-
     <Grid>
         <Label Content="Select components count" FontSize="20" FontWeight="Bold" FontFamily="Helvetica" Margin="20"/>
         <Button x:Name="CloseButton" Style="{StaticResource MaterialDesignFlatButton}" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" ToolTip="MaterialDesignFlatButton">Close</Button>
